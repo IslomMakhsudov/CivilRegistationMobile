@@ -1,0 +1,136 @@
+html {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    scroll-behavior: smooth
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0
+}
+
+html,
+body {
+    position: relative;
+    overflow-x: hidden;
+    height: 100%;
+    font-family:  'Inter', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit
+}
+
+a {
+    text-decoration: none;
+    color: inherit
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.form-input {
+    width: 120px;
+    height: 150px;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px dashed #868686;
+    position: relative
+}
+
+.wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.form-input:not(:first-child) {
+    margin-left: 20px
+}
+
+.form-input input {
+    display: none
+}
+
+.file-ip-text {
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #5e5e5e
+}
+
+.form-input label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px
+}
+
+.preview img {
+    width: 60%;
+    top: 20px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    display: none;
+    position: absolute;
+    z-index: 2;
+    margin-bottom: 30px
+}
+
+.file-ip-img {
+    width: 40px
+}
+
+.delete-icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.delete {
+    position: absolute;
+    z-index: 3;
+    width: 10px;
+    height: 10px;
+    top: 8px;
+    right: 8px;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0
+}

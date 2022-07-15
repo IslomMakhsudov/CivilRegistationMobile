@@ -1,0 +1,234 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    min-height: 500px;
+    font-family: 'Inter', sans-serif;
+}
+
+.applicant-form {
+
+    display: flex;
+    flex-flow: column;
+}
+
+.mini-title {
+    text-align: left;
+    height: 10%;
+    margin: 0 0 20px 0;
+}
+
+
+.applicant-radio {
+    display: flex;
+    justify-content: end;
+    padding: 0;
+
+}
+
+.title-form {
+    text-align: left;
+    font-weight: bold;
+    padding: 0 0 15px 0;
+    font-size: 20px;
+}
+
+.payment {
+    height: 89%;
+    min-height: 400px;
+}
+
+.p-flex {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.p-box {
+    margin: 0 0 80px 0;
+    padding: 0 3% 0 3%;
+    width: 100%;
+    height: 40%;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+}
+
+.p-box-2 {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0 15px 0;
+}
+
+.p-box div {
+
+    width: 100%;
+}
+
+.p-box .top {
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    height: 15%;
+}
+
+.p-box .center {
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    vertical-align: bottom;
+    margin-bottom: 10%;
+}
+
+.p-box .center p {
+    margin: 0;
+    color: rgb(11, 104, 31);
+    font-weight: bolder;
+}
+
+.p-box .center div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+#sum {
+    font-size: 50px;
+}
+
+#currency {
+    font-size: 32px;
+}
+
+.p-box .bot {
+    height: 45%;
+    background-color: rgb(245, 245, 245);
+    border-radius: 15px;
+}
+
+.p-box .bot div {
+    height: 33.33%;
+}
+
+.p-box .bot .bot-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bot-row p {
+    margin: 0 5% 0 5%;
+}
+
+
+
+.payment-title {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    font-weight: bold;
+    height: 15%;
+    max-height: 80px;
+    font-size: 18px;
+}
+
+.app-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+}
+
+.content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.bot-content {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+
+.bot-content-d {
+    height: 8vh;
+    min-height: 70px;
+    max-height: 120px;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 4vh;
+}
+
+.bot-content-d a {
+    width: 80px;
+    display: flex;
+    justify-content: end;
+    padding-right: 10px;
+}
+
+.bot-content-d img {
+    height: 100%;
+
+}
+
+.title-support {
+    padding-left: 10px;
+    text-align: left;
+    font-weight: 900;
+    margin: 15px 0 0 0;
+    font-size: calc(12px + 5 * (100vw / 500));
+}
+
+.date-time {
+    width: 90%;
+}
+
+@media (max-width: 767px) {
+    .title-support {
+        font-size: calc(17px + (10 + 10 * 0.7) * ((100vw - 320px) / 500));
+    }
+}
+
+.title-support p {
+    margin: 0;
+}
+
+.container {
+    max-height: 1000px;
+    max-width: 500px;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.block-1:not(:last-child) {
+    margin-bottom: 60px;
+}
+
+.block-1:not(:first-child) .icon-w:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 53px;
+    background-image: url(../images/Line\ 6.svg);
+    height: 88px;
+    width: 4px;
+    z-index: -1;
+}

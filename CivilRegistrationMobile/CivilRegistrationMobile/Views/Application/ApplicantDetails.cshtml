@@ -1,0 +1,174 @@
+﻿@model CivilRegistrationMobile.Models.Applicant
+
+@{
+	ViewData["Title"] = "Данные о заявителе";
+}
+@section Styles{
+	<link rel="stylesheet" href="/css/navigation-styles.css">
+    <link rel="stylesheet" href="/css/child-registration-content.css">
+    <link rel="stylesheet" href="/css/applicant.css">
+    <link rel="stylesheet" href="/css/image-block.css">
+    <link rel="stylesheet" href="/css/optimization.css">
+}
+
+<div class="title">
+    <p>Заполните данные о заявителе</p>
+</div>
+<form method="post" enctype="multipart/form-data" asp-action="ApplicantCreate" class="needs-validation" novalidate>
+
+    <div class="form-group">
+        <label asp-for="CurrentCountry" class="font-color">Выберите страну проживания</label>
+        <select id="countries" onchange="countryChange(this)" class="form-control"  asp-for="CurrentCountry" asp-items="ViewBag.CountryNames" required>
+           
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentRegion" class="font-color">Выберите регион проживания</label>
+        <select id="regions" onchange="regionChange(this)" class="form-control" asp-for="CurrentRegion" required>
+            <option selected="selected" disabled="disabled" value="">Выберите регион</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentCity" class="font-color">Выберите город проживания</label>
+        <select id="cities" onchange="cityChange(this)" class="form-control selectpicker"  asp-for="CurrentCity" data-live-search="true" required>
+            <option selected="selected" disabled="disabled" value="">Выберите город</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentVillage" class="font-color">Выберите посёлок в котором проживаете(необязательно)</label>
+        <select id="villages" class="form-control" asp-for="CurrentVillage">
+            <option selected="selected" disabled="disabled" value="">Выберите посёлок</option>
+        </select>
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="LastName" class="font-color">Фамилия(заявителя)</label>
+        <input type="text" class="form-control" asp-for="LastName" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="font-color">Имя(заявителя)</label>
+        <input type="text" class="form-control" asp-for="Name" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Patronymic" class="font-color">Отчество(заявителя, необязательно)</label>
+        <input type="text" class="form-control" asp-for="Patronymic" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentAddress" class="font-color">Адрес проживания</label>
+        <input type="text" class="form-control" asp-for="CurrentAddress" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TIN" class="font-color">ИНН</label>
+        <input type="number" minlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="form-control" asp-for="TIN" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PassportNumber" class="font-color">Серия паспорта</label>
+        <input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="form-control" asp-for="PassportNumber" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="IssuingAuth" class="font-color">Орган выдачи</label>
+        <input type="text" class="form-control" asp-for="IssuingAuth" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="font-color">Номер телефона</label>
+        <input type="tel" maxlength="15" class="form-control" asp-for="PhoneNumber" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 50px;">
+        <label for="photo" class="font-color" style="margin-bottom: 30px;">Выберите документ, подтверждающий
+            вашу
+            личность</label>
+
+
+        <div class="wrapper">
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="DocumentPicture_1">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>
+                <input asp-for="DocumentPicture_1" type="file" class="file-input" id="DocumentPicture_1" accept="image/*" data-img-id="1"
+                    onchange="showPreview(event);" required>
+                <div class="invalid-feedback">
+                    Пожалуйста выберите документ.
+                </div>
+            </div>
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="DocumentPicture_2">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>
+                <input asp-for="DocumentPicture_2" type="file" class="file-input" id="DocumentPicture_2" accept="image/*" data-img-id="2"
+                    onchange="showPreview(event);" required>
+                <div class="invalid-feedback">
+                    Пожалуйста выберите документ.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="min-height">
+        
+            <input type="submit"  value="Далее" class="btn btn-success form-control ">
+        
+    </div>
+    
+</form>
+
+@section Scripts{
+    <script charset="utf-8" type="text/javascript" src="~/js/filters.js"></script>
+    <script src="~/js/image.block.js"></script> 
+    <script src="~/js/validation.js"></script>
+}

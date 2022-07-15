@@ -1,0 +1,78 @@
+﻿@{
+	Layout = "/Views/Shared/_IndexLayout.cshtml";
+	ViewData["Title"] = "Мои заявки";
+}
+@section Styles{
+	<link rel="stylesheet" href="~/css/myApplications-style.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/css/optimization.css" asp-append-version="true">
+}
+
+
+
+  <div class="row mt-3">
+    <a href="myApplicationsExtendedVersion1.html" class="text-none">
+      <button class="btn applications">
+        <div class="app-image">
+          <div class="blob waiting">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="#f39c12"
+              class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+            </svg>
+          </div>
+        </div>
+        <div class="row w-100 row-cols-2 content-grid">
+          <div class="col-12 text-l  top-text">
+            Заявление о государственной регистрации рождения ребёнка
+          </div>
+          <div class="col-6 text-l bot-text">23/12/2021 00:05</div>
+          <div class="col-6 text-r color-waiting bot-text">В ожидании</div>
+        </div>
+      </button>
+    </a>
+  </div>
+
+  <div class="row mt-3">
+    <a href="myApplicationsExtendedVersion3.html" class="text-none">
+      <button class="btn applications">
+        <div class="app-image">
+          <div class="blob Service_approved">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="#00b06c"
+              class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+              <path
+                d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+            </svg>
+          </div>
+        </div>
+        <div class="row w-100 row-cols-2 content-grid">
+          <div class="col-12 text-l  top-text">
+            Заявление о государственной регистрации смерти
+          </div>
+          <div class="col-6 text-l bot-text">23/12/2021 00:05</div>
+          <div class="col-6 text-r color-success bot-text">Услуга одобрена</div>
+        </div>
+      </button>
+    </a>
+  </div>
+
+  <div class="row mt-3">
+    <a href="myApplicationsServiceDeclined.html" class="text-none">
+      <button class="btn applications">
+        <div class="app-image">
+          <div class="blob Service_declined">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="#e74c3c"
+              class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+              <path
+                d="M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+            </svg>
+          </div>
+        </div>
+        <div class="row w-100 row-cols-2 content-grid">
+          <div class="col-12 text-l top-text">
+            Заявление о государственной регистрации смерти
+          </div>
+          <div class="col-6 text-l bot-text">23/12/2021 00:05</div>
+          <div class="col-6 text-r color-dissmiss bot-text">Услуга отклонена</div>
+        </div>
+      </button>
+    </a>
+  </div>

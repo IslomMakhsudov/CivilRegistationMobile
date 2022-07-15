@@ -1,0 +1,133 @@
+﻿@model IconsColor
+@{
+    ViewData["Title"] = "Заявление о госудаственной рождении ребёнка";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/navigation-styles.css">
+    <link rel="stylesheet" href="~/css/child-registration-content.css">
+    <link rel="stylesheet" href="~/css/applicant.css">
+    <link rel="stylesheet" href="~/css/optimization.css">
+     <style>
+        .accordion{
+            margin-top: 10px;
+        }
+
+        .dropdown-item {
+            padding: 0;
+        }
+
+        .accordion-item:last-of-type .accordion-button.collapsed {
+            border-radius: 0.5rem !important;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .accordion-button:focus {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .accordion-button::after {
+            margin-right: 10px;
+        }
+
+        .child-checkbox {
+            min-width: 40px;
+            max-width: 40px;
+            height: 100%;
+            align-items: center;
+            display: flex;
+        }
+    </style>
+}
+        <div class="title-cbr">
+            <p>Заявление о государственной регистрации рождения ребёнка</p>
+        </div>
+        <div class="content-row">
+            <a asp-action="ApplicantDetails" asp-controller="Application" class="rows" id="applicantDetails">
+                <div class="btn row-button">
+                    <div class="content-icon">
+                        <img src="~/images/@Model.OneImage">
+                    </div>
+                    <div class="content-text">
+                        <p>Заполните данные заявителя</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="content-row">
+            <a id="childDetails" asp-action="ChildDetails" asp-controller="Application" class="rows" >
+                <div class="btn row-button">
+                    <div class="content-icon">
+                        <img src="~/images/@Model.TwoImage">
+                    </div>
+                    <div class="content-text">
+                        <p>Заполните данные ребёнка</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item h-100">
+                <h2 class="accordion-header" id="headingOne" style="height: 77px;">
+                    <button class="accordion-button collapsed btn row-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <div class="content-icon">
+                            <img src="~/images/@Model.ThreeImage">
+                        </div>
+                        <div class="content-text">
+                            <p>Информация о родителях</p>
+                        </div>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample" style="margin-top: 10px;">
+                    <a asp-action="FatherDetails" asp-controller="Application" class="rows dropdown-item" id="fatherDetails">
+                        <div class="btn row-button">
+                            <div class="content-icon">
+                                <img src="~/images/@Model.ThreeOneImage">
+                            </div>
+                            <div class="content-text">
+                                <p>Заполните данные о отце</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a asp-action="MotherDetails" asp-controller="Application" class="rows dropdown-item" id="motherDetails">
+                        <div class="btn row-button">
+                            <div class="content-icon">
+                                <img src="~/images/@Model.ThreeTwoImage">
+                            </div>
+                            <div class="content-text">
+                                <p>Заполните данные о матери</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <form class="flex">
+            <div class="box-1">
+                <div class="child-checkbox">
+                    <div class="round">
+                        <input onchange="getApplicationStatus()" type="checkbox" id="checkbox" />
+                        <label for="checkbox"></label>
+                    </div>
+                </div>
+                <div class="apply-text">
+                    Согласно законодательству Республики Таджикистан считаю себя ответственным на дачу заведомо ложных
+                    сведений.
+                </div>
+            </div>
+            <div class="box-2">
+                <a id="buttonLink" asp-action="Payment" asp-route-pageName="Payment" class="w-100 h-100">
+                    <input  id="buttonInput" class="btn flex-btn" type="button" value="Продолжить">
+                </a>
+            </div>
+        </form>
+
+@section Scripts{
+    <script src="~/js/status.js"></script>
+}

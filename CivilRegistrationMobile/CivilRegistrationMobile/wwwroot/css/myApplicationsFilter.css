@@ -1,0 +1,45 @@
+html, body{
+    height: 100%;
+    font-family:  'Inter', sans-serif;
+}
+
+.image img{
+    max-width: 35px;
+}
+a{
+    text-decoration: none;
+  }
+.container{
+    max-width: 500px;
+}
+
+.flex-btn{
+    width: 100%;
+
+}
+
+
+.h-90{
+    height: 90%;
+}
+
+.flex{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media(min-height: 700px){
+    .h-90{
+        height: 90%;
+    }
+}
+.header{
+    margin-bottom: 5vh;
+}
+
+.container{
+    padding-right: 12px;
+    padding-left:12px;
+}

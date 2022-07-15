@@ -1,0 +1,204 @@
+﻿@model Deceased
+@{
+	ViewData["Title"] = "Данные усопшего";
+}
+
+@section Styles{
+	<link rel="stylesheet" href="/css/navigation-styles.css">
+    <link rel="stylesheet" href="/css/child-registration-content.css">
+    <link rel="stylesheet" href="/css/applicant.css">
+    <link rel="stylesheet" href="/css/image-block.css">
+    <link rel="stylesheet" href="/css/optimization.css">
+}
+
+<div class="title">
+    <p>Заполните данные усопшего</p>
+</div>
+<!-- height 10% -->
+<div class="mini-title">
+    <p>
+        Прошу произвести государственную регистрацию смерти и выписать свидетельство о смерти. 
+    </p>
+</div>
+
+<form method="post" asp-action="DeceasedCreate" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+    <div class="form-group">
+        <label asp-for="CurrentCountry" class="font-color">Выберите страну проживания</label>
+        <select id="countries" onchange="countryChange(this)" class="form-control"  asp-for="CurrentCountry" asp-items="ViewBag.CountryNames" required>
+           
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentRegion" class="font-color">Выберите регион проживания</label>
+        <select id="regions" onchange="regionChange(this)" class="form-control" asp-for="CurrentRegion" required>
+            <option selected="selected" disabled="disabled" value="">Выберите регион</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentCity" class="font-color">Выберите город проживания</label>
+        <select id="cities" onchange="cityChange(this)" class="form-control selectpicker"  asp-for="CurrentCity" data-live-search="true" required>
+            <option selected="selected" disabled="disabled" value="">Выберите город</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentVillage" class="font-color">Выберите посёлок в котором проживаете(необязательно)</label>
+        <select id="villages" class="form-control" asp-for="CurrentVillage">
+            <option selected="selected" disabled="disabled" value="">Выберите посёлок</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegistryOffice" class="font-color">Орган ЗАГСа (джамоат шахрак и дехот района, города)</label>
+        <select id="registryOffices" class="form-control" asp-for="RegistryOffice" required>
+            <option selected="selected" disabled="disabled" value="">Выберите орган ЗАГСа</option>
+        </select>
+    </div>
+
+   <div class="form-group">
+        <label asp-for="LastName" class="font-color">Фамилия</label>
+        <input asp-for="LastName" type="text" class="form-control" id="surname" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="font-color">Имя</label>
+        <input asp-for="Name" type="text" class="form-control" id="name" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Patronymic" class="font-color">Отчество</label>
+        <input asp-for="Patronymic" type="text" class="form-control" id="patronymic" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+     <div class="form-group">
+        <label asp-for="Sex" class="font-color">Пол</label>
+        <div class="row">
+            <div class="col">
+                <div class="form-check">
+                    <input asp-for="Sex" value="@true" class="form-check-input" type="radio" id="checkbox1" name="flexRadioDefault" required/>
+                    <label class="form-check-label" asp-for="Sex">Мужской</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check">
+                    <input asp-for="Sex" value="@false" class="form-check-input" type="radio" id="checkbox2" name="flexRadioDefault" required/>
+                    <label class="form-check-label" asp-for="Sex">Женский</label>
+                </div>
+            </div>
+        </div>
+        <div class="invalid-feedback">
+            Пожалуйста выберите пол.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BirthPlace" class="font-color">Место рождения</label>
+        <input asp-for="BirthPlace" type="text" class="form-control" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastLivePlace" class="font-color">последний адрес проживания</label>
+        <input asp-for="LastLivePlace" type="text" class="form-control" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+     <div class="form-group">
+        <label asp-for="DeathPlace" class="font-color">Место смерти(город, район, область и республика)</label>
+        <input asp-for="DeathPlace" type="text" class="form-control" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateOfBirth" class="font-color">Дата рождения</label>
+        <div class="row">
+            <div class="col">
+                <input asp-for="DateOfBirth" class="datetime w-100" type="date" required>
+            </div>
+        </div>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="DateOfDeath" class="font-color">Дата смерти</label>
+        <div class="row">
+            <div class="col">
+                <input asp-for="DateOfDeath" class="datetime w-100" type="date" required>
+            </div>
+        </div>
+        <div class="invalid-feedback">
+            Пожалуйста выберите дату.
+        </div>
+    </div>
+
+
+    <div class="form-group m-bot"> 
+        <label for="photo" class="font-color" style="margin-bottom: 15%;">Документ, подтверждающий факт смерти</label>
+        <div class="wrapper">
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="DeathDocumentPicture_1">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>
+                <input asp-for="DeathDocumentPicture_1" type="file" id="DeathDocumentPicture_1" accept="image/*" data-img-id="1" onchange="showPreview(event);">
+
+            </div>
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="DeathDocumentPicture_2">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>
+                <input asp-for="DeathDocumentPicture_2" type="file" id="DeathDocumentPicture_2" accept="image/*" data-img-id="2" onchange="showPreview(event);">
+            </div>
+        </div>
+    </div>
+
+    <div class="min-height">
+        <a href="deathRegistration.html">
+            <input type="submit" value="Далее" class="btn btn-success form-control">
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    <script src="~/js/filters.js"></script>
+    <script src="~/js/image.block.js"></script>
+    <script src="~/js/validation.js"></script>
+}

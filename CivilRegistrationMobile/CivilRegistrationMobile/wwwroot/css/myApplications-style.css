@@ -1,0 +1,298 @@
+html,
+body {
+  height: 100%;
+  min-height: 600px;
+  margin: 0;
+  font-family:  'Inter', sans-serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+.header {
+  height: 35px;
+  margin-top: 10px;
+}
+
+
+.navigation-bar {
+  text-align: center;
+  align-items: center;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  
+}
+
+.navigation-footer {
+  height: 5px;
+}
+
+.width-height {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  text-align: center;
+}
+
+.navigation-header {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 900;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation-header p{
+  margin:0;
+
+}
+
+.image {
+  width: 10%;
+  height: 70%;
+}
+
+.image_2 img{
+  height: 30px;
+  width: 30px;
+  margin-right: 5px;
+}
+
+.image img {
+  height: 100%;
+}
+
+
+.class-header {
+  width: 100%;
+  height: 30px;
+  font-size: 22px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.applications {
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  display: flex;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.app-text {
+  font-size: 14px;
+  padding-top: 10px;
+  text-align: left;
+  align-items: center;
+  display: flex;
+}
+
+.app-image{
+  display: flex;
+  align-items: center;
+}
+
+.status {
+  font-size: 12px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.status p {
+  flex: 1;
+  align-items: center;
+  text-align: right;
+}
+
+
+.blob.waiting {
+  margin: 2px;
+  height: 46px;
+  width: 46px;
+  border-radius: 50%;
+  background: #fad395;
+  animation: pulse-waiting 1.5s infinite;
+}
+
+@keyframes pulse-waiting {
+  0% {
+    box-shadow: 0 0 0 0 #fad395;
+  }
+
+  75% {
+    box-shadow: 0 0 0 13px transparent;
+  }
+}
+
+.blob.Service_approved {
+  margin: 2px;
+  height: 46px;
+  width: 46px;
+  border-radius: 50%;
+  background: #8ddcbd;
+  animation: pulse-Service_approved 1.5s infinite;
+}
+
+@keyframes pulse-Service_approved {
+  0% {
+    box-shadow: 0 0 0 0 #8ddcbd;
+  }
+
+  75% {
+    box-shadow: 0 0 0 13px transparent;
+  }
+}
+
+.blob.Service_declined {
+  margin: 2px;
+  height: 46px;
+  width: 46px;
+  border-radius: 50%;
+  background: #f4afa7;
+  animation: pulse-Service_declined 1.5s infinite;
+}
+
+@keyframes pulse-Service_declined {
+  0% {
+    box-shadow: 0 0 0 0 #f4afa7;
+  }
+
+  75% {
+    box-shadow: 0 0 0 13px transparent;
+  }
+}
+
+.header-flex {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.header-flex .header-box-1 {
+  flex-direction: row;
+  margin-top: 6px;
+}
+
+.header-flex .header-box-2 {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 5;
+  margin-left: 31%;
+  align-items: center;
+}
+
+.header-flex .header-box-3 {
+  display: flex;
+  flex-direction: row;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+
+.content {
+  max-height: 1000px;
+  min-height: 400px;
+  height: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-block{
+  max-height: 500px;
+  height: 80%;
+}
+
+.bot-content {
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.bot-content-d {
+  height: 8vh;
+  min-height: 70px;
+  max-height: 120px;
+  display: flex;
+  justify-content: end;
+  margin-bottom: 4vh;
+}
+
+.bot-content-d a{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding-right: 10px;
+}
+
+.bot-content-d img {
+  height: 100%;
+  
+}
+
+.content-grid{
+  padding-left: 15px;
+}
+
+.text-l{
+  text-align: left;
+}
+
+.text-r{
+  text-align: right;
+}
+
+.color-success{
+  color: green;
+}
+
+.color-waiting{
+  color: rgb(255, 165, 0);
+}
+
+.color-dissmiss{
+  color: red;
+}
+
+.text-none{
+  text-decoration: none;
+}
+
+.top-text{
+  font-size: calc(6px + 4 * (100vw / 500));
+  margin-bottom: 10px;
+}
+
+.bot-text{
+  font-size: calc(2px + 4 * (100vw / 500));
+}
+
+@media (max-width: 767px){
+  .top-text{
+    font-size: calc(12px + (10 + 10 * 0.7) * ((100vw - 320px) / 1140));
+  }
+
+  .bot-text{
+    font-size: calc(10px + (10 + 10 * 0.7) * ((100vw - 320px) / 1140));
+  }
+}
+
+@media (min-width: 500px){
+  .top-text{
+    font-size: 14.5px;
+  }
+
+  .bot-text{
+    font-size: 12px;
+  }
+}

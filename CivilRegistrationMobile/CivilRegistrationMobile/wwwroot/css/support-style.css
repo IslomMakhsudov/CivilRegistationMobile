@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:  'Inter', sans-serif;
+}
+
+.accordion {
+  width: 100%;
+  border-radius: 10px;
+}
+.accordion-item {
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 1rem 0;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25);
+}
+
+.accordion-item:first-of-type{
+  border-radius: 10px;
+}
+
+.accordion-header{
+  border-radius: 10px;
+}
+
+.accordion-item:first-of-type .accordion-button{
+  border-radius: 10px;
+}
+
+ .accordion-item-header p:active{
+   color: red;
+ }
+ .accordion-item-header p::after{
+   color: red;
+ }
+
+ .accordion-item-header.current p{
+   color: red;
+ }
+
+.accordion-item-header {
+  padding: 0.5rem 3rem 0.5rem 1rem;
+  min-height: 4.5rem;
+  line-height: 1.25rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+
+.accordion-item:last-of-type .accordion-collapse{
+  border-radius: 10px;
+}
+
+.accordion-item:last-of-type{
+  border-radius: 10px;
+}
+
+.accordion-item:last-of-type .accordion-button.collapsed{
+  border-radius: 10px;
+}
+
+.support-row{
+  height: 70px;
+  margin-top: 2vh;
+}
+
+.rows{
+  text-decoration: none;
+}
+
+.content-text{
+  margin-left: 2vw;
+}
+
+@media (max-width: 500px){
+  .content-text{
+      font-size: calc(21px + (10 + 10 * 0.7) * ((100vw - 320px) / 500));
+  }
+}
+
+@media (min-width: 500px){
+  .content-text{
+    font-size: 27px;
+  }
+
+  .title-support{
+    font-size: 26px;
+  }
+}
+.container{
+  justify-content: flex-start;
+}
+
+.accordion-button{
+  border-radius: 10px;
+}
+
+
+.accordion-button:focus{
+  box-shadow: 0 0 0 0;
+}
+
+.accordion-button:not(.collapsed){
+  color: rgb(0, 112, 0);
+  background-color: #ffffff;
+  font-weight: 600;
+}
+
+.accordion-button:not(.collapsed)::after{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}

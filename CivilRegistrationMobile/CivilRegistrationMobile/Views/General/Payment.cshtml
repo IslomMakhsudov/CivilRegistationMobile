@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Payment>
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/navigation-styles.css">
+    <link rel="stylesheet" href="~/css/child-registration-content.css">
+    <link rel="stylesheet" href="~/css/applicant.css">
+}
+
+<form method="post" asp-action="DeeplinkToAmonat" class="p-flex">
+    <div class="payment-title">
+        <p>Для получения ответа заявления оплатите следующие платежи</p>
+    </div>
+    <div class="p-box">
+        <div class="top">
+            <p>Сумма платежа</p>
+        </div>
+        <div class="center">
+            <p>
+                <span id="sum">
+                    @ViewBag.TotalPrice
+                </span>
+                <span id="currency">
+                    СОМОНИ
+                </span>
+            </p>
+        </div>
+        <div class="bot">
+            @foreach (var obj in Model)
+            {
+                <div class="bot-row">
+                    <p>@obj.PaymentType</p>
+                    <p>@obj.PaymentPrice</p>
+                </div>
+            }
+            
+        </div>
+    </div>
+    <div class="box-2">
+        <input class="btn flex-btn w-100" type="button" value="Продолжить">
+    </div>
+    
+</form>

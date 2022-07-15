@@ -1,0 +1,57 @@
+﻿@{
+    string className = "";
+
+    className = ViewBag.PageName == "Payment" ? "payment h-100" : "";
+    className = ViewBag.PageName == "ApplicationFilter" ? "h-100" : "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="text/html; charset=utf-8" />
+    <title>@ViewData["Title"] - CivilRegistrationMobile</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <div class="container @className">
+        <div class="header">
+            <div class="navigation-header">
+                <div class="image">
+                    <a id="go-back" style="display:flex; height: 100%;">
+                        <img src="~/images/left-arrow.png">
+                    </a>
+                </div>
+
+                @if(ViewBag.PageName == "Support")
+                {
+                    <p>Тех поддержка</p>
+                    <div class="image_2-div">
+
+                    </div>
+                }
+                @if (ViewBag.PageName == "ApplicationFilter")
+                {
+                    <p>Фильтр заявок</p>
+                    <div class="image_2-div">
+
+                    </div>
+                }
+
+            </div>
+            @await RenderSectionAsync("UnderHeader", required: false)
+        </div>
+        @RenderBody()
+    </div>
+
+    <script>
+        document.getElementById('go-back').addEventListener('click', () =>{
+            history.back();
+        });
+    </script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

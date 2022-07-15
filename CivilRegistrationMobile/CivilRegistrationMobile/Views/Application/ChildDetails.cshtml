@@ -1,0 +1,223 @@
+﻿@model Child
+@{
+	ViewData["Title"] = "Данные ребёнка";
+}
+
+@section Styles{
+	<link rel="stylesheet" href="/css/navigation-styles.css">
+    <link rel="stylesheet" href="/css/child-registration-content.css">
+    <link rel="stylesheet" href="/css/applicant.css">
+    <link rel="stylesheet" href="/css/image-block.css">
+    <link rel="stylesheet" href="/css/optimization.css">
+}
+
+<div class="title">
+    <p>Заполните данные ребёнка</p>
+</div>
+
+<div class="mini-title">
+    <p>
+        Просим Произвести государственную регистраицию рождения ребёнка и выписать свидетельство о рождении
+    </p>
+</div>
+
+<form style="margin: 0 0 0 0" enctype="multipart/form-data"  method="post"  asp-action="ChildCreate" class="needs-validation" novalidate>
+
+    <div class="form-group">
+        <label asp-for="LastName" class="font-color">Фамилия</label>
+        <input type="text" class="form-control" asp-for="LastName" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="font-color w-100">Имя</label>
+        <input asp-for="Name" type="text" class="form-control" required/>
+       @* <!-- Button trigger modal -->
+        <input asp-for="Name"  type="button" class=" w-100 form-select" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Выберите имя ребёнку"/>
+            
+        
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Поиск</h5>
+                        <input type="text" class="form-control" name="" id="">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae id magni deserunt labore aliquid beatae eius, inventore corrupti, molestias reiciendis, provident nobis ea officia? Sequi, non fugit ex asperiores impedit modi id ipsa quia accusamus voluptatem facilis sunt laboriosam ratione distinctio doloremque quaerat fuga sint veniam! Veritatis quasi maiores eaque quis quos consectetur incidunt ea, aspernatur velit distinctio fuga, voluptate eligendi rem. Dolorum, praesentium eaque. Similique facere iste, ipsam dignissimos nobis consequatur repellendus incidunt assumenda quaerat sunt praesentium quas illum ab nemo nam nihil commodi iusto dolore. Iure corporis a eum, magnam reiciendis natus dolorem deserunt ipsum consequuntur minima quam!
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, doloremque. Maxime at eligendi facere dignissimos tempore temporibus rem! Quae voluptas dicta sed blanditiis distinctio incidunt excepturi aspernatur dolorum dolores dolore, consequuntur corporis molestiae sunt voluptatum tempora obcaecati ipsum laboriosam quod rem aut facilis totam nulla error itaque. Natus cum odit aliquid inventore accusantium deserunt ex alias incidunt libero facere, est distinctio minus deleniti voluptas quae eaque blanditiis quasi ipsa quam quo pariatur commodi! Quibusdam, animi numquam! Animi quae corporis reiciendis iste quam enim perspiciatis molestias laudantium velit explicabo, excepturi voluptates? Explicabo voluptatibus illo, suscipit ut in delectus quam consequatur impedit.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-primary">Найти</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="Patronymic" class="font-color">Отчество</label>
+        <input type="text" class="form-control" asp-for="Patronymic" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Sex" class="font-color">Пол</label>
+        <div class="row">
+            <div class="col">
+                <div class="form-check">
+                    <input asp-for="Sex" value="@true" class="form-check-input" type="radio" id="checkbox1"  required/>
+                    <label  class="form-check-label" asp-for="Sex">Мужской</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check">
+                    <input asp-for="Sex" value="@false" class="form-check-input" type="radio" id="checkbox2"  required/>
+                    <label  class="form-check-label" asp-for="Sex">Женский</label>
+                </div>
+            </div>
+        </div>
+        <div class="invalid-feedback">
+            Пожалуйста выберите пол.
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="DateOfBirth" class="font-color w-100">Дата рождения</label>
+                <img class="date-icon" src="~/images/calendar_icon.png" width="8" alt="">
+                <input asp-for="DateOfBirth" class="datetime" type="date" required>
+            </div>
+            <div class="col">
+                <label asp-for="TimeOfBirth" class="font-color w-100">Время рождения</label>
+                <img class="date-icon" src="~/images/hour_icon.png" width="8"/>
+                <input asp-for="TimeOfBirth" class="date-time" type="time" required />
+            </div>
+        </div>
+        <div class="invalid-feedback">
+            Пожалуйста выберите дату и время.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Birthplace" class="font-color">Место рождения</label>
+        <input asp-for="Birthplace" type="text" class="form-control" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NewbornCount" class="font-color">Количество новорождённых</label>
+        <select asp-for="NewbornCount" class="form-control form-select" required>
+            <option value="" selected="selected" disabled="disabled">...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ChildCount" class="font-color">Количество детей в семье</label>
+        <input asp-for="ChildCount" type="number" class="form-control" value="1" step="1" min="1" max="20" required>
+    </div>
+
+    <div class="form-group">
+        <label for="childrenProperty" class="font-color">Характеристики ребёнка</label>
+        <div class="row">
+            <div class="col">
+                <label asp-for="Weight" style="margin:0;">Вес(г)</label>
+                <input asp-for="Weight" type="number" step="10" name="weight" id="childrenWeight" class="form-control" required>
+            </div>
+            <div class="col">
+                <label asp-for="Height" style="margin:0;">Рост(см)</label>
+                <input asp-for="Height" type="number" step="0.1" name="weight" id="childrenWeight" class="form-control" required>
+            </div>
+        </div>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поля.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PregnancyDuration" class="font-color">Длительность беременности (в неделях)</label>
+        <input asp-for="PregnancyDuration" type="number" step="1" class="form-control" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 50px;">
+        <label for="photo" class="font-color" style="margin-bottom: 30px;">Документ подтверждающий факт рождения
+            ребёнка</label>
+        <div class="wrapper">
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="DocumentPicture_1">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>
+                <input asp-for="DocumentPicture_1" type="file" id="DocumentPicture_1" accept="image/*" data-img-id="1"
+                    onchange="showPreview(event);" required>
+                <div class="invalid-feedback">
+                    Пожалуйста выберите документ.
+                </div>
+            </div>
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="DocumentPicture_2">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>
+                <input asp-for="DocumentPicture_2" type="file" id="DocumentPicture_2" accept="image/*" data-img-id="2"
+                    onchange="showPreview(event);" required>
+                <div class="invalid-feedback">
+                    Пожалуйста выберите документ.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="min-height">
+        <input type="submit" value="Далее" class="btn btn-success form-control">
+    </div>
+
+</form>
+
+@section Scripts{
+    <script src="~/js/image.block.js"></script>
+    <script src="~/js/validation.js"></script>
+}

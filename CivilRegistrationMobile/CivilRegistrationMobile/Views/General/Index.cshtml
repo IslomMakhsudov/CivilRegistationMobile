@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "/Views/Shared/_IndexLayout.cshtml";
+    ViewData["Title"] = "Новая заявка";
+}
+@section Styles{
+	<link rel="stylesheet" href="~/css/navigation-styles.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/child-registration-content.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/applicant.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/optimization.css" asp-append-version="true">
+}
+  
+  <div class="content-row text-none">
+      <a asp-action="NewbornRegistration" asp-route-code="0" class="rows text-none">
+          <div class="btn row-button text-none">
+              <div class="content-icon">
+                  <img src="images/person.png">
+              </div>
+              <div class="content-text-main text-none">
+                  <p>
+                      Заявление о государственной регистрации рождения ребёнка
+                  </p>
+              </div>
+          </div>
+      </a>
+  </div>
+  
+  <div class="content-row">
+      <a asp-action="DeathRegistration" class="rows">
+          <div class="btn row-button">
+              <div class="content-icon">
+                  <img src="images/book.png">
+              </div>
+              <div class="content-text-main">
+                  <p>
+                      Заявление о государственной регистрации смерти
+                  </p>
+              </div>
+          </div>
+      </a>
+  </div>

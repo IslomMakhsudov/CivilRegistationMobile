@@ -1,0 +1,276 @@
+﻿@model Father
+@{
+	ViewData["Title"] = "Данные отца";
+}
+
+@section Styles{
+	<link rel="stylesheet" href="/css/navigation-styles.css">
+    <link rel="stylesheet" href="/css/child-registration-content.css">
+    <link rel="stylesheet" href="/css/image-block.css">
+    <link rel="stylesheet" href="/css/optimization.css">
+    <link rel="stylesheet" href="/css/applicant.css">
+}
+
+<div class="title">
+    <p>Заполните данные о отце</p>
+</div>
+<!-- height 10% -->
+
+
+<form method="post" enctype="multipart/form-data" asp-action="FatherCreate" class="needs-validation" novalidate>
+
+    <div class="form-group">
+        <div class="row" style="margin: 0 4% 0 0;">
+            <div class="col" style="padding: 0;">
+                <label for="applicant">Заявитель</label>
+            </div>
+            <div class="col applicant-radio">
+                <div class="round">
+                    <input type="checkbox" id="checkbox"/>
+                    <label for="checkbox"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="title-form">
+        <p>Отец</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentCountry" class="font-color">Выберите страну проживания</label>
+        <select id="countries" onchange="countryChange(this)" class="form-control"  asp-for="CurrentCountry" asp-items="ViewBag.CountryNames" required>
+           
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentRegion" class="font-color">Выберите регион проживания</label>
+        <select id="regions" onchange="regionChange(this)" class="form-control" asp-for="CurrentRegion" required>
+            <option selected="selected" disabled="disabled" value="">Выберите регион</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentCity" class="font-color">Выберите город проживания</label>
+        <select id="cities" onchange="cityChange(this)" class="form-control selectpicker"  asp-for="CurrentCity" data-live-search="true" required>
+            <option selected="selected" disabled="disabled" value="">Выберите город</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentVillage" class="font-color">Выберите посёлок в котором проживаете(необязательно)</label>
+        <select id="villages" class="form-control" asp-for="CurrentVillage">
+            <option selected="selected" disabled="disabled" value="">Выберите посёлок</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegistryOffice" class="font-color">Орган ЗАГСа (джамоат шахрак и дехот района, города)</label>
+        <select id="registryOffices" class="form-control" asp-for="RegistryOffice" required>
+            <option selected="selected" disabled="disabled" value="">Выберите орган ЗАГСа</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName" class="font-color">Фамилия</label>
+        <input asp-for="LastName" type="text" class="form-control" id="surname" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="font-color">Имя</label>
+        <input asp-for="Name" type="text" class="form-control" id="name" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Patronymic" class="font-color">Отчество</label>
+        <input asp-for="Patronymic" type="text" class="form-control" id="patronymic" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateOfBirth" class="font-color w-100">Дата рождения</label>
+        <img class="date-icon" src="/images/calendar_icon.png" width="8" alt="">
+        <input asp-for="DateOfBirth" class="date-time " type="date" id="birthdayDate"  required>
+        <div class="invalid-feedback">
+            Пожалуйста выберите дату.
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Citizenship" class="font-color">Гражданство</label>
+        <select asp-for="Citizenship" asp-items="@ViewBag.Citizenship" class="form-control" required>
+            
+        </select>
+        <div class="invalid-feedback">
+            Пожалуйста выберите ваше гражданство.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Nationality" class="font-color">Национальность</label>
+        <select asp-for="Nationality" asp-items="@ViewBag.Nationality" class="form-control" required>
+
+        </select>
+        <div class="invalid-feedback">
+            Пожалуйста выберите вашу национальность.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PassportNumber" class="font-color">Серия паспорта</label>
+        <input asp-for="PassportNumber"  maxlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="text" class="form-control" id="name" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegistryOffice" class="font-color">Орган выдачи</label>
+        <input asp-for="RegistryOffice" type="text" class="form-control" id="name" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentAddress" class="font-color">Адрес проживания</label>
+        <input asp-for="CurrentAddress" type="text" class="form-control" id="name" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LiveFrom" class="font-color w-100">Проживаю с</label>
+        <img class="date-icon" src="/images/calendar_icon.png" width="8" alt="">
+        <input asp-for="LiveFrom" class="date-time" type="date" required>
+        <div class="invalid-feedback">
+            Пожалуйста выберите дату.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Education" class="font-color">Образование</label>
+        <input asp-for="Education" type="text" class="form-control" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WorkPlace" class="font-color">Место работы</label>
+        <input asp-for="WorkPlace" type="text" class="form-control" required> 
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JobTitle" class="font-color">Должность</label>
+        <input asp-for="JobTitle" type="text" class="form-control" required>
+        <div class="invalid-feedback">
+            Пожалуйста заполните поле.
+        </div>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 50px;">
+        <label for="photo" class="font-color" style="margin-bottom: 30px;">Выберите докуменет подтверждающий
+            личность</label>
+
+
+        <div class="wrapper">
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="PersonDocumentPicture_1">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>
+                <input asp-for="PersonDocumentPicture_1" type="file" id="PersonDocumentPicture_1" accept="image/*" data-img-id="1"
+                    onchange="showPreview(event);">
+
+            </div>
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="PersonDocumentPicture_2">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>
+                <input asp-for="PersonDocumentPicture_2" type="file" id="PersonDocumentPicture_2" accept="image/*" data-img-id="2"
+                    onchange="showPreview(event);">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group" style="margin-bottom: 50px;">
+        <label class="font-color" style="margin-bottom: 30px;">Выберите докуменет подтверждающий
+            брак</label>
+
+        <div class="wrapper">
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="MarriageDocumentPicture_1">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>
+                <input asp-for="MarriageDocumentPicture_1" type="file" id="MarriageDocumentPicture_1" accept="image/*" data-img-id="3"
+                    onchange="showPreview(event);">
+
+            </div>
+            <div class="form-input">
+                <button class="delete">
+                    <img class="delete-icon" src="~/images/close.png" alt="x">
+                </button>
+                <div class="preview">
+                    <img class="file-ip-preview">
+                </div>
+                <label asp-for="MarriageDocumentPicture_2">
+                    <div class="inner">
+                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                    </div>
+                </label>     
+                <input asp-for="MarriageDocumentPicture_2" type="file" id="MarriageDocumentPicture_2" accept="image/*" data-img-id="3" onchange="showPreview(event);">            
+            </div>
+        </div>
+    </div>
+
+    <div class="min-height">
+        <input type="submit" value="Далее" class="btn btn-success form-control">
+    </div>
+</form>
+
+@section Scripts{
+    <script src="~/js/filters.js"></script>
+    <script src="~/js/image.block.js"></script>
+    <script src="~/js/validation.js"></script>
+}

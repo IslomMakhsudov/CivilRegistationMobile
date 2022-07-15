@@ -1,0 +1,66 @@
+﻿@model IconsColor
+@{
+	ViewData["Title"] = "Регистрация смерти";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/navigation-styles.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/child-registration-content.css" asp-append-version="true">
+}
+
+@section UnderHeader{
+
+    <div>
+        <div class="title-cbr">
+            <p>
+                Заявление о государственной регистрации смерти
+            </p>
+        </div>
+        <div class="row content-row">
+            <a asp-action="ApplicantDetails" asp-controller="Application" class="rows">
+                <div class="btn row-button">
+                    <div class="content-icon">
+                        <img src="~/images/@Model.OneImage">
+                    </div>
+                    <div class="content-text">
+                        <p>Заполните данные заявителя</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="row content-row">
+            <a asp-action="DeceasedDetails" asp-controller="Application" class="rows">
+                <div class="btn row-button">
+                    <div class="content-icon">
+                        <img src="~/images/@Model.TwoImage">
+                    </div>
+                    <div class="content-text">
+                        <p>Заполните данные усопшего</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="box-1">
+            <div style="min-width: 10%; height: 100%; align-items: center; display: flex;">
+                <div class="round">
+                    <input type="checkbox" id="checkbox" />
+                    <label for="checkbox"></label>
+                </div>
+            </div>
+            <div style="text-align: left; font-size: 12px; ">
+                Согласно законодательству Республики Таджикистан считаю себя ответственным за дачу заведомо ложных
+                сведений.
+            </div>
+        </div>
+    </div>
+}
+
+<div class="box-2">
+    <a href="payment.html" class="w-100 h-100">
+        <input class="btn flex-btn" type="button" value="Продолжить">
+    </a>
+</div>
+
+@section Scripts{
+    <script src="~/js/changeColor.js"></script>
+}
