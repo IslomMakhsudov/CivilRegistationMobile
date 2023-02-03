@@ -54,24 +54,24 @@ namespace ZagsDbServerProject.Repositories
         public override void InsertData(Addresses data)
         {
             // TODO Change address insertion method
-            Villages? tempVillage = null;
+            Villages tempVillage = null;
             if (data.VillageID != null)
             {
                 tempVillage = context.Villages.Where(v => v.VillageID == data.VillageID)?.FirstOrDefault();
             }
-            data.FullAddress = data.AddressName
+            data.FullAddress = data.AddressName + " "
                             + ((tempVillage == null) ? "" : tempVillage.Name)
-                            + context.CitiesDistricts
+                            + " " + context.CitiesDistricts
                             .Where(cd => cd.CityDistrictID == data.CityDistrictID).Select(res => new
                             {
                                 res.Name
                             }).First().Name
-                            + context.Regions
+                            + " " + context.Regions
                             .Where(rg => rg.RegionID == data.RegionID).Select(res => new
                             {
                                 res.Name
                             }).First().Name
-                            + context.Countries
+                            + " " + context.Countries
                             .Where(ctry => ctry.CountryID == data.CountryID).Select(res => new
                             {
                                 res.ShortName
@@ -81,7 +81,7 @@ namespace ZagsDbServerProject.Repositories
 
         public override void UpdateData(Addresses data)
         {
-            Villages? tempVillage = null;
+            Villages tempVillage = null;
             if (data.VillageID != null)
             {
                 tempVillage = context.Villages.Where(v => v.VillageID == data.VillageID)?.FirstOrDefault();

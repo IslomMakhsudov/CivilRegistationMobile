@@ -1,11 +1,11 @@
 ﻿namespace CivilRegistrationMobile.Models
 {
-    public class Applicant
+    /// <summary>
+    /// My Applicant
+    /// </summary>
+    public class Applicant : ApplicationLists
     {
-        public int CurrentCountry { get; set; } 
-        public int CurrentRegion { get; set; }
-        public int CurrentCity { get; set; }
-        public int? CurrentVillage { get; set; } = null;
+        public bool Check { get; set; }
         public string LastName { get; set; } = "";
         public string Name { get; set; } = "";
         public string Patronymic { get; set; } = "";
@@ -14,7 +14,9 @@
         public string PassportNumber { get; set; } = "";
         public string IssuingAuth { get; set; } = "";
         public string PhoneNumber { get; set; } = "";
-        public IFormFile? DocumentPicture_1 { get; set; }
-        public IFormFile? DocumentPicture_2 { get; set; }
+        public int? RegisterTo { get; set; } = null;
+        public int ApplicationType { get; set; }
+        public IFormFile? DocumentPicture1 { get; set; }
+        public IFormFile? DocumentPicture2 { get; set; }   
     }   
 }

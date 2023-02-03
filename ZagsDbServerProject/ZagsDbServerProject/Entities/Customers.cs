@@ -32,8 +32,6 @@ namespace ZagsDbServerProject.Entities
         public string PassportGivingOrgan { get; set; }
         [MaxLength(100)]
         public string PlaceOfWork { get; set; }
-        [MaxLength(100)]
-        public string ProfessionInWork { get; set; }
         public DateTime? CurrentAddressLivingStartTime { get; set; }
         public int? ExternalID { get; set; }
 
@@ -56,5 +54,7 @@ namespace ZagsDbServerProject.Entities
         public int? CountryID { get; set; }
         [ForeignKey("EducationLevelID")]
         public int? EducationLevelID { get; set; }
+        [ForeignKey("TypeOfActivitiesInWorkID")]
+        public int? TypeOfActivitiesInWorkID { get; set; }
     }
 }

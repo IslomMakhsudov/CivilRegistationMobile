@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Transactions;
 using ZagsDbServerProject.Interfaces;
 
 namespace ZagsDbServerProject.Repositories
@@ -34,13 +36,13 @@ namespace ZagsDbServerProject.Repositories
 
         public virtual async Task<TGeneric> GetByPredicate(Expression<Func<TGeneric, bool>> predicate)
         {
-               var st =  Task.FromResult(context.Set<TGeneric>().FirstOrDefault(predicate));
+            var st =  Task.FromResult(context.Set<TGeneric>().FirstOrDefault(predicate));
             return await st;
         }
 
         public virtual async Task<IEnumerable<TGeneric>> GetManyByPredicate(Expression<Func<TGeneric, bool>> predicate)
         {
-            return await Task.FromResult(context.Set<TGeneric>().Where(predicate)); ;
+            return await Task.FromResult(context.Set<TGeneric>().Where(predicate));
         }
 
         public virtual async void InsertData(TGeneric data)
@@ -90,6 +92,30 @@ namespace ZagsDbServerProject.Repositories
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public static async Task<List<T>> ToListWithNoLockAsync<T>(IQueryable<T> query, CancellationToken cancellationToken = default, Expression<Func<T, bool>> expression = null)
+        {
+            List<T> result = default;
+            using (var scope = CreateTrancation())
+            {
+                if (expression != null)
+                {
+                    query = query.Where(expression);
+                }
+                result = await query.ToListAsync(cancellationToken);
+                scope.Complete();
+            }
+            return result;
+        }
+        private static TransactionScope CreateTrancation()
+        {
+            return new TransactionScope(TransactionScopeOption.Required,
+                                        new TransactionOptions()
+                                        {
+                                            IsolationLevel = IsolationLevel.ReadUncommitted
+                                        },
+                                       TransactionScopeAsyncFlowOption.Enabled);
         }
     }
 }

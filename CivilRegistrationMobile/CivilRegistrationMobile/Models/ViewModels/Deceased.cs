@@ -1,22 +1,41 @@
-﻿namespace CivilRegistrationMobile.Models
+﻿using CivilRegistrationMobile.Models.ViewModels.ValidationAttributes;
+
+namespace CivilRegistrationMobile.Models
 {
-    public class Deceased
+    public class Deceased : ApplicationLists
     {
-        public int CurrentCountry { get; set; }
-        public int CurrentRegion { get; set; }
-        public int CurrentCity { get; set; }
-        public int? CurrentVillage { get; set; } = null;
-        public int RegistryOffice { get; set; }
+        public IEnumerable<SelectListItem>? DeathCountryList { get; set; } = null;
+        public IEnumerable<SelectListItem>? DeathRegionList { get; set; } = null;
+        public IEnumerable<SelectListItem>? DeathCityList { get; set; } = null;
+        public IEnumerable<SelectListItem>? DeathVillageList { get; set; } = null;
+
+        public IEnumerable<SelectListItem>? BirthCountryList { get; set; } = null;
+        public IEnumerable<SelectListItem>? BirthRegionList { get; set; } = null;
+        public IEnumerable<SelectListItem>? BirthCityList { get; set; } = null;
+        public IEnumerable<SelectListItem>? BirthVillageList { get; set; } = null;
+
+        public int DeathCountry { get; set; }
+        public int DeathRegion{ get; set; }
+        public int DeathCity { get; set; }
+        public int? DeathVillage { get; set; } = null;
+        public string DeathAddress { get; set; } = "";
+
+        public int BirthCountry { get; set; }
+        public int BirthRegion { get; set; }
+        public int BirthCity { get; set; }
+        public int? BirthVillage { get; set; } = null;
+        public string BirthAddress { get; set; } = "";
+
+        public string CurrentAddress { get; set; } = "";
         public string LastName { get; set; } = "";
         public string Name { get; set; } = "";
         public string Patronymic { get; set; } = "";
-        public string BirthPlace { get; set; } = "";
-        public string DeathPlace { get; set; } = "";
-        public string LastLivePlace { get; set; } = "";
-        public DateOnly DateOfBirth { get; set; }
-        public DateOnly DateOfDeath { get; set; }
-        public bool Sex { get; set; }
-        public IFormFile? DeathDocumentPicture_1 { get; set; }
-        public IFormFile? DeathDocumentPicture_2 { get; set; }
+        public DateTime DateOfBirth { get; set; } = DateTime.Now.AddYears(-30);
+        [ChildBirthday]
+        public DateTime DateOfDeath { get; set; } = DateTime.Now;
+        public bool? Sex { get; set; } = null;
+        public string WorkPlace { get; set; } = "";
+        public int RegisterCode { get; set; }
+        public IFormFile? DeathDocumentPicture1 { get; set; }
     }
 }

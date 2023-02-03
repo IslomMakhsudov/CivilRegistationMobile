@@ -12,13 +12,13 @@ namespace ZagsDbServerProject.Entities
     {
         [Key]
         public int ApplicationMistakeID { get; set; }
-        [Required, MaxLength(50)]
-        public string FieldName { get; set; }
         [Required, MaxLength(255)]
-        public string Comment { get; set; }
+        public string FieldName { get; set; }
 
 
         [Required, ForeignKey("ApplicationID")]
         public int ApplicationID { get; set; }
+        [Required, ForeignKey("ApplicationMemberTypeID")]
+        public int ApplicationMemberTypeID { get; set; }
     }
 }

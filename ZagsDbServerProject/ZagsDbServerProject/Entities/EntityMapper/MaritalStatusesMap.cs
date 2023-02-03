@@ -11,16 +11,37 @@ namespace ZagsDbServerProject.Entities.EntityMapper
                 new MaritalStatuses()
                 {
                     MaritalStatusID = 1,
-                    MaritalStatusName = "Холостой",
+                    MaritalStatusName = "Женатый",
                     StatusID = 1,
-                    LabelID = 369
+                    LabelID = 372
                 },
                 new MaritalStatuses()
                 {
                     MaritalStatusID = 2,
-                    MaritalStatusName = "Женатый",
+                    MaritalStatusName = "Холостой",
                     StatusID = 1,
-                    LabelID = 370
+                    LabelID = 371
+                },
+                new MaritalStatuses()
+                {
+                    MaritalStatusID = 3,
+                    MaritalStatusName = "Вдовец",
+                    StatusID = 1,
+                    LabelID = 375
+                },
+                new MaritalStatuses()
+                {
+                    MaritalStatusID = 4,
+                    MaritalStatusName = "Разведённый",
+                    StatusID = 1,
+                    LabelID = 376
+                },
+                new MaritalStatuses()
+                {
+                    MaritalStatusID = 5,
+                    MaritalStatusName = "Вдова",
+                    StatusID = 1,
+                    LabelID = 377
                 }
             );
         }

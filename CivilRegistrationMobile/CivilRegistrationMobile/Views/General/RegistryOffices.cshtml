@@ -1,0 +1,34 @@
+﻿@model List<RegistryOffice>
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/optimization.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/myApplications-style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/registryOffice-styles.css" asp-append-version="true" />
+}
+
+
+
+<div class="row mt-3">
+
+    @foreach (var office in Model )
+    {
+        <a href="@office.LocationLink" class="text-none">
+            <div class="btn applications">
+                <div class="app-image">
+                    <div class="icon-round">
+                        <img src="/images/courthouse.svg" alt="">
+                    </div>
+                </div>
+                <div class="row w-100 row-cols-2 content-grid">
+                    <div class="col-12 text-l top-text-court">
+                        @office.Name
+                    </div>
+                    <div class="col-12 text-l bot-text-court">
+                        @office.WorkTime
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+   
+</div>

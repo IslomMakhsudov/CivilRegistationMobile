@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
+using System.Linq;
 using ZagsDbServerProject.Entities;
 using ZagsDbServerProject.Interfaces;
+using ZagsDbServerProject.Responces;
 
 namespace ZagsDbServerProject.Repositories
 {
@@ -13,6 +12,17 @@ namespace ZagsDbServerProject.Repositories
     {
         public UsersRepository(AppDbContext context) : base(context)
         {
+        }
+
+        public async Task<IEnumerable<Users>> GetUser(string login)
+        {
+            var ans = await Task.FromResult(
+                from user in context.Users
+                where user.Login == login && user.UserStatusID == 1
+                select user
+                );
+                
+            return ans;
         }
     }
 }

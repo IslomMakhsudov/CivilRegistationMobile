@@ -8,8 +8,8 @@ namespace ZagsDbServerProject.Entities
     public class Logs
     {
         [Key]
-        public int UserLogID { get; set; }
-        [MaxLength(150)]
+        public int LogID { get; set; }
+        [Column(TypeName = "NVARCHAR(MAX)")]
         public string CommentOfAction { get; set; }
         [Required]
         public DateTime EventTime { get; set; }
@@ -18,19 +18,13 @@ namespace ZagsDbServerProject.Entities
         [Required, ForeignKey("OperationTypeID")]
         public int OperationTypeID { get; set; }
         [ForeignKey("ApplicationID")]
-        public int ApplicationID { get; set; }
-        [ForeignKey("DepartmentID")]
-        public int DepartmentID { get; set; }
-        [ForeignKey("ApplicationStatusID")]
-        public int ApplicationStatusID { get; set; }
+        public int? ApplicationID { get; set; }
         [ForeignKey("OldStatusID")]
-        public int OldStatusID { get; set; }
-        [ForeignKey("AffectedTableID")]
-        public int AffectedTableID { get; set; }
+        public int? OldStatusID { get; set; }
         [ForeignKey("UserID")]
-        public int UserID { get; set; }
+        public int? UserID { get; set; }
         [ForeignKey("CustomerID")]
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
 
     }
 }

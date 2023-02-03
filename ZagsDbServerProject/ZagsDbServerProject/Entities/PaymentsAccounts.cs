@@ -20,6 +20,8 @@ namespace ZagsDbServerProject.Entities
         [Required]
         [Column(TypeName = "VARCHAR"), MaxLength(50)]
         public string CreditAccount { get; set; }
+        [Required]
+        public DateTime DateIn { get; set; }
 
 
         [Required, ForeignKey("PaymentSystemID")]
@@ -28,5 +30,9 @@ namespace ZagsDbServerProject.Entities
         public int ApplicationTypeID { get; set; }
         [Required, ForeignKey("PaymentTypeID")]
         public int PaymentTypeID { get; set; }
+        [Required, ForeignKey("UserID")]
+        public int UserID { get; set; }
+        [Required, ForeignKey("StatusID")]
+        public int StatusID { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace ZagsDbServerProject.Entities
         [MaxLength(50)]
         public string Patronymic { get; set; }
         [NotMapped] // this annotation is used for calculated fields 
-        public string FullName => $"{Surname} {Name} {(Patronymic.Length > 0 ? Patronymic : '\0')}";
+        public string FullName => $"{Surname} {Name} {((Patronymic != null) ? (Patronymic.Length > 0 ? Patronymic : "") : "")}";
         [Required, MaxLength(255)]
         public string Address { get; set; }
         [Required]
@@ -38,14 +38,17 @@ namespace ZagsDbServerProject.Entities
         public DateTime LastEnter { get; set; }
         [Required]
         public int AmountOfEnters { get; set; }
+        [Required]
+        [Column(TypeName = "VARCHAR"), MaxLength(20)]
+        public string CROISLogin { get; set; }
+        public int CroisOrganID { get; set; }
+        public int HierarchyLevel { get; set; }
 
 
         [Required, ForeignKey("LanguageID")]
         public int LanguageID { get; set; }
         [Required, ForeignKey("RoleID")]
         public int RoleID { get; set; }
-        [Required, ForeignKey("DepartmentID")]
-        public int DepartmentID { get; set; }
         [Required, ForeignKey("UserStatusID")]
         public int UserStatusID { get; set; }
     }

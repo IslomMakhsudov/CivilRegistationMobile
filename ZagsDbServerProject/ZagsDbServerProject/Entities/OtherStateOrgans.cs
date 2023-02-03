@@ -14,5 +14,9 @@ namespace ZagsDbServerProject.Entities
         public int OrganID { get; set; }
         [Required, MaxLength(50)]
         public string OrganName { get; set; }
+
+
+        [Required, ForeignKey("StatusID")]
+        public int StatusID { get; set; }
     }
 }

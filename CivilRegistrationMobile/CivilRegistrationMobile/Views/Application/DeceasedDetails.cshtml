@@ -1,204 +1,383 @@
 ﻿@model Deceased
 @{
-	ViewData["Title"] = "Данные усопшего";
+    ViewData["Title"] = "Данные усопшего";
+
+    string hideClass = "hide";
+
+    if (ViewBag.IsValid == 0)
+    {
+        hideClass = "";
+    }
 }
 
 @section Styles{
-	<link rel="stylesheet" href="/css/navigation-styles.css">
-    <link rel="stylesheet" href="/css/child-registration-content.css">
-    <link rel="stylesheet" href="/css/applicant.css">
-    <link rel="stylesheet" href="/css/image-block.css">
-    <link rel="stylesheet" href="/css/optimization.css">
+    <link rel="stylesheet" href="~/css/navigation-styles.css"/>
+    <link rel="stylesheet" href="~/css/child-registration-content.css"/>
+    <link rel="stylesheet" href="~/css/applicant.css"/>
+    <link rel="stylesheet" href="~/css/image-block.css"/>
+    <link rel="stylesheet" href="~/css/optimization.css"/>
+    <link rel="stylesheet" href="~/css/deceasedStyle.css"/>
+    <link rel="stylesheet" href="~/css/reason-window.css"/>
 }
 
 <div class="title">
-    <p>Заполните данные усопшего</p>
+    <p>@ViewBag.DeceasedDetails</p>
 </div>
 <!-- height 10% -->
 <div class="mini-title">
     <p>
-        Прошу произвести государственную регистрацию смерти и выписать свидетельство о смерти. 
+        @ViewBag.DeceasedTitle
     </p>
 </div>
 
 <form method="post" asp-action="DeceasedCreate" enctype="multipart/form-data" class="needs-validation" novalidate>
 
-    <div class="form-group">
-        <label asp-for="CurrentCountry" class="font-color">Выберите страну проживания</label>
-        <select id="countries" onchange="countryChange(this)" class="form-control"  asp-for="CurrentCountry" asp-items="ViewBag.CountryNames" required>
-           
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="CurrentRegion" class="font-color">Выберите регион проживания</label>
-        <select id="regions" onchange="regionChange(this)" class="form-control" asp-for="CurrentRegion" required>
-            <option selected="selected" disabled="disabled" value="">Выберите регион</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="CurrentCity" class="font-color">Выберите город проживания</label>
-        <select id="cities" onchange="cityChange(this)" class="form-control selectpicker"  asp-for="CurrentCity" data-live-search="true" required>
-            <option selected="selected" disabled="disabled" value="">Выберите город</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="CurrentVillage" class="font-color">Выберите посёлок в котором проживаете(необязательно)</label>
-        <select id="villages" class="form-control" asp-for="CurrentVillage">
-            <option selected="selected" disabled="disabled" value="">Выберите посёлок</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="RegistryOffice" class="font-color">Орган ЗАГСа (джамоат шахрак и дехот района, города)</label>
-        <select id="registryOffices" class="form-control" asp-for="RegistryOffice" required>
-            <option selected="selected" disabled="disabled" value="">Выберите орган ЗАГСа</option>
-        </select>
-    </div>
-
-   <div class="form-group">
-        <label asp-for="LastName" class="font-color">Фамилия</label>
-        <input asp-for="LastName" type="text" class="form-control" id="surname" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Name" class="font-color">Имя</label>
-        <input asp-for="Name" type="text" class="form-control" id="name" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Patronymic" class="font-color">Отчество</label>
-        <input asp-for="Patronymic" type="text" class="form-control" id="patronymic" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="Sex" class="font-color">Пол</label>
-        <div class="row">
-            <div class="col">
-                <div class="form-check">
-                    <input asp-for="Sex" value="@true" class="form-check-input" type="radio" id="checkbox1" name="flexRadioDefault" required/>
-                    <label class="form-check-label" asp-for="Sex">Мужской</label>
+    <div id="reasonWindow" class="main-container @hideClass">
+        <div class="reason-window">
+            <div class="app-image">
+                <div class="blob Service_declined">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="#e74c3c"
+                         class="bi bi-exclamation-circle " viewBox="0 0 16 16">
+                        <path d="M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0
+                                .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                    </svg>
                 </div>
             </div>
-            <div class="col">
-                <div class="form-check">
-                    <input asp-for="Sex" value="@false" class="form-check-input" type="radio" id="checkbox2" name="flexRadioDefault" required/>
-                    <label class="form-check-label" asp-for="Sex">Женский</label>
+            <div>
+                <div class="reason-title">
+                    @ViewBag.ReasonTitle
+                </div>
+                <div class="reason-text ">
+                    <p id="reasonText"></p>
+                </div>
+            </div>
+            <button onclick="hideReasonWindow()" id="buttonInput" class="btn reason-btn" type="button">OK</button>
+        </div>
+    </div>
+
+<div class="form-group m-top">
+    <label asp-for="LastName" class="font-color">@ViewBag.LastName</label>
+    <input asp-for="LastName" type="text" class="form-control" id="surname" required>
+    <div class="invalid-feedback">
+        @ViewBag.FillField
+    </div>
+</div>
+
+<div class="form-group m-top">
+    <label asp-for="Name" class="font-color">@ViewBag.Name</label>
+    <input asp-for="Name" type="text" class="form-control" id="name" required>
+    <div class="invalid-feedback">
+        @ViewBag.FillField
+    </div>
+</div>
+
+<div class="form-group m-top">
+    <label asp-for="Patronymic" class="font-color">@ViewBag.Patronymic</label>
+    <input asp-for="Patronymic" type="text" class="form-control" id="patronymic" required>
+    <div class="invalid-feedback">
+        @ViewBag.FillField
+    </div>
+</div>
+
+<div class="form-group m-top">
+    <label asp-for="Sex" class="font-color">@ViewBag.Sex</label>
+    <div class="row" id="sex">
+        <div class="col">
+            <div class="form-check">
+                <input asp-for="Sex" value="@true" class="form-check-input" type="radio" id="sex1" required/>
+                <label class="form-check-label" for="sex1">@ViewBag.Male</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-check">
+                <input asp-for="Sex" value="@false" class="form-check-input" type="radio" id="sex2" required/>
+                <label class="form-check-label" for="sex2">@ViewBag.Female</label>
+            </div>
+        </div>
+    </div>
+    <div class="invalid-feedback">
+        @ViewBag.ChooseSex
+    </div>
+</div>
+
+<div class="form-group m-top">
+    <div class="row" id="birthday">
+        <div class="col">
+            <label asp-for="DateOfBirth" class="font-color w-100">@ViewBag.DateOfBirth</label>
+            <img class="date-icon" src="~/images/calendar_icon.png"/>
+            <input asp-for="DateOfBirth" class="datetime" type="date" required>
+        </div>
+        <div class="col">
+            <label asp-for="DateOfDeath" class="font-color w-100">@ViewBag.DateOfDeath</label>
+            <img class="date-icon" src="~/images/calendar_icon.png"/>
+            <input id="date" asp-for="DateOfDeath" class="datetime" type="date" required>
+        </div>
+    </div>
+    <div class="invalid-feedback">
+        @ViewBag.ChooseDate
+    </div>
+</div>
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+        <button class="accordion-button font-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            @ViewBag.DeathPlace
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+        <div class="accordion-body">
+            <div class="form-group">
+                <label asp-for="DeathCountry" class="font-color">@ViewBag.Country</label>
+                <selectOne id="countries" onchange="countryChange(this)" class="form-control deathCountry" asp-for="DeathCountry" asp-items="Model.DeathCountryList" multiple="multiple" required>
+
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                <label asp-for="DeathRegion" class="font-color">@ViewBag.Region</label>
+                <selectOne id="regions" onchange="regionChange(this)" class="form-control deathRegion" asp-for="DeathRegion" asp-items="Model.DeathRegionList" multiple="multiple" required>
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseRegion</option>
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                <label asp-for="DeathCity" class="font-color">@ViewBag.City</label>
+                <selectOne id="cities" onchange="deceasedCityChange(this, 2)" class="form-control selectpicker deathCity" asp-for="DeathCity" asp-items="Model.DeathCityList" multiple="multiple" required>
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseCity</option>
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                <label asp-for="DeathVillage" class="font-color">@ViewBag.Village</label>
+                <selectOne id="villages" onchange="deceasedVillageChange(this, 2)" class="form-control deathVillage" asp-for="DeathVillage" asp-items="Model.DeathVillageList" multiple="multiple">
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseVillage</option>
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                <label asp-for="DeathAddress" class="font-color">@ViewBag.DeathPlace (@ViewBag.Address)</label>
+                <input  asp-for="DeathAddress" type="text" class="form-control deathAddress" required>
+                <div class="invalid-feedback">
+                    @ViewBag.FillField
                 </div>
             </div>
         </div>
-        <div class="invalid-feedback">
-            Пожалуйста выберите пол.
-        </div>
     </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="BirthPlace" class="font-color">Место рождения</label>
-        <input asp-for="BirthPlace" type="text" class="form-control" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+        <button class="accordion-button collapsed font-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            @ViewBag.BirthPlace
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+        <div class="accordion-body">
+            <div class="form-group">
+                <label asp-for="BirthCountry" class="font-color">@ViewBag.Country</label>
+                <selectOne id="countries" onchange="countryChange(this)" class="form-control birthCountry" asp-for="BirthCountry" asp-items="Model.BirthCountryList" multiple="multiple" required>
 
-    <div class="form-group">
-        <label asp-for="LastLivePlace" class="font-color">последний адрес проживания</label>
-        <input asp-for="LastLivePlace" type="text" class="form-control" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
-
-     <div class="form-group">
-        <label asp-for="DeathPlace" class="font-color">Место смерти(город, район, область и республика)</label>
-        <input asp-for="DeathPlace" type="text" class="form-control" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="DateOfBirth" class="font-color">Дата рождения</label>
-        <div class="row">
-            <div class="col">
-                <input asp-for="DateOfBirth" class="datetime w-100" type="date" required>
+                </selectOne>
             </div>
-        </div>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
 
-
-    <div class="form-group">
-        <label asp-for="DateOfDeath" class="font-color">Дата смерти</label>
-        <div class="row">
-            <div class="col">
-                <input asp-for="DateOfDeath" class="datetime w-100" type="date" required>
+            <div class="form-group m-top">
+                            <label asp-for="BirthRegion" class="font-color">@ViewBag.Region</label>
+                <selectOne id="regions" onchange="regionChange(this)" class="form-control birthRegion" asp-for="BirthRegion" asp-items="Model.BirthRegionList" multiple="multiple" required>
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseRegion</option>
+                </selectOne>
             </div>
-        </div>
-        <div class="invalid-feedback">
-            Пожалуйста выберите дату.
-        </div>
-    </div>
 
+            <div class="form-group m-top">
+                            <label asp-for="BirthCity" class="font-color">@ViewBag.City</label>
+                <selectOne id="cities" onchange="cityChange(this)" class="form-control selectpicker birthCity" asp-for="BirthCity" asp-items="Model.BirthCityList" multiple="multiple" required>
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseCity</option>
+                </selectOne>
+            </div>
 
-    <div class="form-group m-bot"> 
-        <label for="photo" class="font-color" style="margin-bottom: 15%;">Документ, подтверждающий факт смерти</label>
-        <div class="wrapper">
-            <div class="form-input">
-                <button class="delete">
-                    <img class="delete-icon" src="~/images/close.png" alt="x">
-                </button>
-                <div class="preview">
-                    <img class="file-ip-preview">
+            <div class="form-group m-top">
+                            <label asp-for="BirthVillage" class="font-color">@ViewBag.Village</label>
+                <selectOne id="villages" class="form-control birthVillage" asp-for="BirthVillage" asp-items="Model.BirthVillageList" multiple="multiple">
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseVillage</option>
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                            <label asp-for="BirthAddress" class="font-color">@ViewBag.BirthPlace</label>
+                <input asp-for="BirthAddress" type="text" class="form-control birthAddress" required>
+                <div class="invalid-feedback">
+                    
                 </div>
-                <label asp-for="DeathDocumentPicture_1">
-                    <div class="inner">
-                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
-                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+        <button class="accordion-button collapsed font-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        @ViewBag.LastLivePlace
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+        <div class="accordion-body">
+            <div class="form-group">
+                <label asp-for="CurrentCountry" class="font-color">@ViewBag.Country</label>
+                <selectOne id="countries" onchange="countryChange(this)" class="form-control currentCountry" asp-for="CurrentCountry" asp-items="Model.CountryList" multiple="multiple" required>
+
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                            <label asp-for="CurrentRegion" class="font-color">@ViewBag.Region</label>
+                <selectOne id="regions" onchange="regionChange(this)" class="form-control currentRegion" asp-for="CurrentRegion" asp-items="Model.RegionList" multiple="multiple" required>
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseRegion</option>
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                            <label asp-for="CurrentCity" class="font-color">@ViewBag.City</label>
+                <selectOne id="cities" onchange="deceasedCityChange(this, 1)" class="form-control selectpicker currentCity" asp-for="CurrentCity" asp-items="Model.CityList" multiple="multiple" required>
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseCity</option>
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                            <label asp-for="CurrentVillage" class="font-color">@ViewBag.Village</label>
+                <selectOne id="villages" onchange="deceasedVillageChange(this, 1)" class="form-control currentVillage" asp-for="CurrentVillage" asp-items="Model.VillageList" multiple="multiple">
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseVillage</option>
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                            <label asp-for="CurrentAddress" class="font-color">@ViewBag.LastLivePlace</label>
+                <input asp-for="CurrentAddress" type="text" class="form-control currentAddress" required>
+                <div class="invalid-feedback">
+                    @ViewBag.FillField
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+        <button class="accordion-button collapsed font-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour"
+                aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+            @ViewBag.PersonalInfo
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+        <div class="accordion-body">
+            <div class="form-group">
+                <label asp-for="MaritalStatus" class="font-color">@ViewBag.MaritalStatus</label>
+                <selectOne id="maritalStatus" asp-for="MaritalStatus" class="form-control" asp-items="Model.MaritalStatusesList" multiple="multiple" required>
+                    @*<option selected="selected" disabled="disabled" value="">@ViewBag.ChooseMaritalStatus</option>*@
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                            <label asp-for="Citizenship" class="font-color">@ViewBag.Citizenship</label>
+                <selectOne id="citizenship" class="form-control" asp-for="Citizenship" asp-items="Model.CitizenshipList" multiple="multiple" required>
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseCitizenship</option>
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                            <label asp-for="Nationality" class="font-color">@ViewBag.Nationality</label>
+                <selectOne id="nationality" class="form-control selectpicker" asp-for="Nationality" asp-items="Model.NationalityList" multiple="multiple" required>
+                    <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseNationality</option>
+                </selectOne>
+            </div>
+
+            <div class="form-group m-top">
+                            <label asp-for="Education" class="font-color">@ViewBag.Education</label>
+                <selectOne id="education" class="form-control selectpicker" asp-for="Education" asp-items="Model.EducationList" multiple="multiple" required>
+
+                </selectOne>
+                <div class="invalid-feedback">
+                    @ViewBag.FillField
+                </div>
+            </div>
+
+            <div class="form-group m-top">
+                <label asp-for="WorkPlace" class="font-color">@ViewBag.WorkPlace</label>
+                <input id="workPlace" asp-for="WorkPlace" type="text" class="form-control" required>
+                <div class="invalid-feedback">
+                    @ViewBag.FillField
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+        <button class="accordion-button collapsed font-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive"
+                aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+            @ViewBag.DeathDocument
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+        <div class="accordion-body">
+                    <div class="alert alert-warning alert-dismissible fade hide show d-none" role="alert">
+                        <strong>@ViewBag.ImageSize!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                </label>
-                <input asp-for="DeathDocumentPicture_1" type="file" id="DeathDocumentPicture_1" accept="image/*" data-img-id="1" onchange="showPreview(event);">
-
-            </div>
-            <div class="form-input">
-                <button class="delete">
-                    <img class="delete-icon" src="~/images/close.png" alt="x">
-                </button>
-                <div class="preview">
-                    <img class="file-ip-preview">
-                </div>
-                <label asp-for="DeathDocumentPicture_2">
-                    <div class="inner">
-                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
-                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+            <div class="wrapper">
+                <div class="form-input" id="documentInput1">
+                    <button type="button" class="delete">
+                        <img onclick="deleteImage(this)" class="delete-icon" src="~/images/close.png" alt="x">
+                    </button>
+                    <div class="preview">
+                        <img class="file-ip-preview">
                     </div>
-                </label>
-                <input asp-for="DeathDocumentPicture_2" type="file" id="DeathDocumentPicture_2" accept="image/*" data-img-id="2" onchange="showPreview(event);">
+                    <label asp-for="DeathDocumentPicture1">
+                        <div class="inner">
+                            <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                            <p class="file-ip-text">@ViewBag.TakePicture</p>
+                        </div>
+                    </label>
+                    <input asp-for="DeathDocumentPicture1" type="file" class="file-input" id="DeathDocumentPicture1" accept="image/*" data-img-id="1"
+                           onchange="showPreview(event);" required>
+                    <div class="invalid-feedback">
+                        @ViewBag.ChooseDocument
+                    </div>
+
+                </div>
+                <div class="form-input">
+
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="min-height">
-        <a href="deathRegistration.html">
-            <input type="submit" value="Далее" class="btn btn-success form-control">
-        </a>
-    </div>
+</div>
+
+<div class="form-group m-top m-bot">
+     <label asp-for="RegistryOffice" class="font-color">@ViewBag.RegistryOffice</label>
+    <selectOne id="registryOffices" class="form-control" asp-for="RegistryOffice" asp-items="Model.RegistryOfficeList" multiple="multiple" required>
+        <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseRegistryOffice</option>
+    </selectOne>
+</div>
+
+<div class="min-height">
+    <input id="buttonInput" type="submit" value="@ViewBag.Next" class="btn btn-success form-control">
+</div>
 </form>
 
 @section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/filters.js"></script>
     <script src="~/js/image.block.js"></script>
     <script src="~/js/validation.js"></script>
+    <script src="~/js/deceasedFields.js"></script>
+    <script src="~/js/dates.js"></script>
+    <script src="~/js/reasonWindow.js"></script>
 }

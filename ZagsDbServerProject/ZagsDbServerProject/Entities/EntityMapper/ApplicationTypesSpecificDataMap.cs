@@ -50,27 +50,77 @@ namespace ZagsDbServerProject.Entities.EntityMapper
                 {
                     ApplicationTypesSpecificDataID = 6,
                     ApplicationTypeID = 2,
-                    SpecificApplicationDataID = 6,
+                    SpecificApplicationDataID = 6,  
                 },
                 new ApplicationTypesSpecificData
                 {
                     ApplicationTypesSpecificDataID = 7,
                     ApplicationTypeID = 2,
                     SpecificApplicationDataID = 7,
+                    SourceTable = "Addresses"
                 },
                 new ApplicationTypesSpecificData
                 {
                     ApplicationTypesSpecificDataID = 8,
                     ApplicationTypeID = 2,
-                    SpecificApplicationDataID = 8
-                    //SourceTable = "Addresses"
+                    SpecificApplicationDataID = 8,
+                    SourceTable = "Addresses"
                 },
                 new ApplicationTypesSpecificData
                 {
                     ApplicationTypesSpecificDataID = 9,
                     ApplicationTypeID = 2,
-                    SpecificApplicationDataID = 9
-                    //SourceTable = "Addresses"
+                    SpecificApplicationDataID = 9,
+                    SourceTable = "Addresses"
+                },
+                new ApplicationTypesSpecificData
+                {
+                    ApplicationTypesSpecificDataID = 10,
+                    ApplicationTypeID = 2,
+                    SpecificApplicationDataID = 10,
+                    SourceTable = "Addresses"
+                },
+                new ApplicationTypesSpecificData
+                {
+                    ApplicationTypesSpecificDataID = 11,
+                    ApplicationTypeID = 2,
+                    SpecificApplicationDataID = 11
+                },
+                new ApplicationTypesSpecificData
+                {
+                    ApplicationTypesSpecificDataID = 12,
+                    ApplicationTypeID = 2,
+                    SpecificApplicationDataID = 12  
+                },
+                new ApplicationTypesSpecificData
+                {
+                    ApplicationTypesSpecificDataID = 13,
+                    ApplicationTypeID = 2,
+                     SpecificApplicationDataID = 13
+                },
+                new ApplicationTypesSpecificData
+                {
+                    ApplicationTypesSpecificDataID = 14,
+                    ApplicationTypeID = 2,
+                    SpecificApplicationDataID = 14
+                },
+                new ApplicationTypesSpecificData
+                {
+                    ApplicationTypesSpecificDataID = 15,
+                    ApplicationTypeID = 2,
+                    SpecificApplicationDataID = 15
+                },
+                new ApplicationTypesSpecificData
+                {
+                    ApplicationTypesSpecificDataID = 16,
+                    ApplicationTypeID = 1,
+                    SpecificApplicationDataID = 16
+                },
+                new ApplicationTypesSpecificData
+                {
+                    ApplicationTypesSpecificDataID = 17,
+                    ApplicationTypeID = 2,
+                    SpecificApplicationDataID = 17
                 }
             );
         }

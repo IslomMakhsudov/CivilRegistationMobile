@@ -13,7 +13,15 @@ namespace ZagsDbServerProject.Entities
         [Key]
         public int PaymentSystemID { get; set; }
         [Required, MaxLength(50)]
-        public string Name { get; set; }
+        public string ShortName { get; set; }
+        [Required, MaxLength(100)]
+        public string FullName { get; set; }
+        [Required, MaxLength(200)]
+        public string Address { get; set; }
+        [Required, MaxLength(50)]
+        public string TIN { get; set; }
+        [Required, MaxLength(50)]
+        public string BIC { get; set; }
 
 
         [Required, ForeignKey("StatusID")]

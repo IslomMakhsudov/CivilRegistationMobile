@@ -1,223 +1,272 @@
-﻿@model Child
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model Child
 @{
-	ViewData["Title"] = "Данные ребёнка";
+    ViewData["Title"] = "Данные ребёнка";
+
+    string hideClass = "hide";
+
+    if (ViewBag.IsValid == 0)
+    {
+        hideClass = "";
+    }
+
 }
 
 @section Styles{
-	<link rel="stylesheet" href="/css/navigation-styles.css">
-    <link rel="stylesheet" href="/css/child-registration-content.css">
-    <link rel="stylesheet" href="/css/applicant.css">
-    <link rel="stylesheet" href="/css/image-block.css">
-    <link rel="stylesheet" href="/css/optimization.css">
+    <link rel="stylesheet" href="~/css/navigation-styles.css">
+    <link rel="stylesheet" href="~/css/child-registration-content.css">
+    <link rel="stylesheet" href="~/css/applicant.css">
+    <link rel="stylesheet" href="~/css/image-block.css">
+    <link rel="stylesheet" href="~/css/optimization.css">
+    <link rel="stylesheet" href="~/css/reason-window.css" />
 }
 
 <div class="title">
-    <p>Заполните данные ребёнка</p>
+    <p>@ViewBag.ChildDetails</p>
 </div>
 
 <div class="mini-title">
     <p>
-        Просим Произвести государственную регистраицию рождения ребёнка и выписать свидетельство о рождении
+        @ViewBag.ChildTitle
     </p>
 </div>
 
-<form style="margin: 0 0 0 0" enctype="multipart/form-data"  method="post"  asp-action="ChildCreate" class="needs-validation" novalidate>
-
-    <div class="form-group">
-        <label asp-for="LastName" class="font-color">Фамилия</label>
-        <input type="text" class="form-control" asp-for="LastName" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Name" class="font-color w-100">Имя</label>
-        <input asp-for="Name" type="text" class="form-control" required/>
-       @* <!-- Button trigger modal -->
-        <input asp-for="Name"  type="button" class=" w-100 form-select" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Выберите имя ребёнку"/>
-            
-        
 
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Поиск</h5>
-                        <input type="text" class="form-control" name="" id="">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae id magni deserunt labore aliquid beatae eius, inventore corrupti, molestias reiciendis, provident nobis ea officia? Sequi, non fugit ex asperiores impedit modi id ipsa quia accusamus voluptatem facilis sunt laboriosam ratione distinctio doloremque quaerat fuga sint veniam! Veritatis quasi maiores eaque quis quos consectetur incidunt ea, aspernatur velit distinctio fuga, voluptate eligendi rem. Dolorum, praesentium eaque. Similique facere iste, ipsam dignissimos nobis consequatur repellendus incidunt assumenda quaerat sunt praesentium quas illum ab nemo nam nihil commodi iusto dolore. Iure corporis a eum, magnam reiciendis natus dolorem deserunt ipsum consequuntur minima quam!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, doloremque. Maxime at eligendi facere dignissimos tempore temporibus rem! Quae voluptas dicta sed blanditiis distinctio incidunt excepturi aspernatur dolorum dolores dolore, consequuntur corporis molestiae sunt voluptatum tempora obcaecati ipsum laboriosam quod rem aut facilis totam nulla error itaque. Natus cum odit aliquid inventore accusantium deserunt ex alias incidunt libero facere, est distinctio minus deleniti voluptas quae eaque blanditiis quasi ipsa quam quo pariatur commodi! Quibusdam, animi numquam! Animi quae corporis reiciendis iste quam enim perspiciatis molestias laudantium velit explicabo, excepturi voluptates? Explicabo voluptatibus illo, suscipit ut in delectus quam consequatur impedit.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary">Найти</button>
-                    </div>
+<form style="margin: 0 0 0 0" enctype="multipart/form-data" method="post" asp-action="ChildCreate" class="needs-validation" novalidate>
+    
+    <div id="reasonWindow" class="main-container @hideClass">
+        <div class="reason-window">
+            <div class="app-image">
+                <div class="blob Service_declined">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="#e74c3c"
+                         class="bi bi-exclamation-circle " viewBox="0 0 16 16">
+                        <path d="M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0
+                                .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                    </svg>
                 </div>
             </div>
-        </div>*@
-    </div>
-
-
-
-    <div class="form-group">
-        <label asp-for="Patronymic" class="font-color">Отчество</label>
-        <input type="text" class="form-control" asp-for="Patronymic" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Sex" class="font-color">Пол</label>
-        <div class="row">
-            <div class="col">
-                <div class="form-check">
-                    <input asp-for="Sex" value="@true" class="form-check-input" type="radio" id="checkbox1"  required/>
-                    <label  class="form-check-label" asp-for="Sex">Мужской</label>
+            <div>
+                <div class="reason-title">
+                    @ViewBag.ReasonTitle
+                </div>
+                <div class="reason-text ">
+                    <p id="reasonText"></p>
                 </div>
             </div>
-            <div class="col">
-                <div class="form-check">
-                    <input asp-for="Sex" value="@false" class="form-check-input" type="radio" id="checkbox2"  required/>
-                    <label  class="form-check-label" asp-for="Sex">Женский</label>
-                </div>
-            </div>
+            <button onclick="hideReasonWindow()" id="buttonInput" class="btn reason-btn" type="button">OK</button>
         </div>
+    </div>
+
+<div class="accordion-body">
+    <div class="form-group">
+        <label asp-for="CurrentCountry" class="font-color">@ViewBag.Country</label>
+        <selectOne id="countries" onchange="countryChange(this)" class="form-control" asp-for="CurrentCountry" asp-items="Model.CountryList" multiple="multiple" required>
+
+        </selectOne>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentRegion" class="font-color">@ViewBag.Region</label>
+        <selectOne id="regions" onchange="regionChange(this)" class="form-control" asp-for="CurrentRegion" asp-items="Model.RegionList" multiple="multiple" required>
+
+        </selectOne>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentCity" class="font-color">@ViewBag.City</label>
+        <selectOne id="cities" onchange="cityChange(this)" class="form-control selectpicker" asp-for="CurrentCity" asp-items="Model.CityList" multiple="multiple" required>
+
+        </selectOne>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentVillage" class="font-color">@ViewBag.Village</label>
+        <selectOne id="villages" class="form-control" asp-for="CurrentVillage" asp-items="Model.VillageList" multiple="multiple">
+
+        </selectOne>
+    </div>
+</div>
+
+<div class="form-group">
+    <label asp-for="LastName" class="font-color">@ViewBag.LastName</label>
+    <input id="lastName" type="text" class="form-control" asp-for="LastName" required/>
+    <div class="invalid-feedback">
+        @ViewBag.FillField
+    </div>
+</div>
+
+<div class="form-group">
+        <label asp-for="Name" class="font-color">@ViewBag.Name</label>
+
+        <input asp-for="Name" oninput="showList(this.value)" onblur="hideList()" type="text" class="name form-control" id="name" required>
+        <div id="namesList" class="list-group">
+
+        </div>
+
         <div class="invalid-feedback">
-            Пожалуйста выберите пол.
+            @ViewBag.ChooseName
         </div>
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
+    <label asp-for="Patronymic" class="font-color">@ViewBag.Patronymic</label>
+    <input id="patronymic" type="text" class="form-control" asp-for="Patronymic">
+</div>
 
-        <div class="row">
-            <div class="col">
-                <label asp-for="DateOfBirth" class="font-color w-100">Дата рождения</label>
-                <img class="date-icon" src="~/images/calendar_icon.png" width="8" alt="">
-                <input asp-for="DateOfBirth" class="datetime" type="date" required>
-            </div>
-            <div class="col">
-                <label asp-for="TimeOfBirth" class="font-color w-100">Время рождения</label>
-                <img class="date-icon" src="~/images/hour_icon.png" width="8"/>
-                <input asp-for="TimeOfBirth" class="date-time" type="time" required />
-            </div>
-        </div>
-        <div class="invalid-feedback">
-            Пожалуйста выберите дату и время.
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="Birthplace" class="font-color">Место рождения</label>
-        <input asp-for="Birthplace" type="text" class="form-control" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="NewbornCount" class="font-color">Количество новорождённых</label>
-        <select asp-for="NewbornCount" class="form-control form-select" required>
-            <option value="" selected="selected" disabled="disabled">...</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="ChildCount" class="font-color">Количество детей в семье</label>
-        <input asp-for="ChildCount" type="number" class="form-control" value="1" step="1" min="1" max="20" required>
-    </div>
-
-    <div class="form-group">
-        <label for="childrenProperty" class="font-color">Характеристики ребёнка</label>
-        <div class="row">
-            <div class="col">
-                <label asp-for="Weight" style="margin:0;">Вес(г)</label>
-                <input asp-for="Weight" type="number" step="10" name="weight" id="childrenWeight" class="form-control" required>
-            </div>
-            <div class="col">
-                <label asp-for="Height" style="margin:0;">Рост(см)</label>
-                <input asp-for="Height" type="number" step="0.1" name="weight" id="childrenWeight" class="form-control" required>
+<div class="form-group">
+    <label asp-for="Sex" class="font-color">@ViewBag.Sex</label>
+    <div id="sex" class="row">
+        <div class="col">
+            <div class="form-check">
+                <input asp-for="Sex" value="@true" class="form-check-input" type="radio" id="sex1" required/>
+                <label class="form-check-label" for="sex1">@ViewBag.Male</label>
             </div>
         </div>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поля.
+        <div class="col">
+            <div class="form-check">
+                <input asp-for="Sex" value="@false" class="form-check-input" type="radio" id="sex2" required/>
+                <label class="form-check-label" for="sex2">@ViewBag.Female</label>
+            </div>
         </div>
     </div>
+    <div class="invalid-feedback">
+        @ViewBag.ChooseSex
+    </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="PregnancyDuration" class="font-color">Длительность беременности (в неделях)</label>
-        <input asp-for="PregnancyDuration" type="number" step="1" class="form-control" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
+<div class="form-group">
+
+    <div id="birthday" class="row">
+        <div class="col">
+            <label asp-for="DateOfBirth" class="font-color w-100">@ViewBag.DateOfBirth</label>
+            <img class="date-icon" src="~/images/calendar_icon.png"/>
+            <input id="date" asp-for="DateOfBirth" class="datetime" type="date" required />
+        </div>
+        <div class="col">
+            <label asp-for="TimeOfBirth" class="font-color w-100">@ViewBag.TimeOfBirth</label>
+            <img class="date-icon" src="~/images/hour_icon.png"/>
+            <input  asp-for="TimeOfBirth" class="datetime" type="time" required value="00:00:00"/>
         </div>
     </div>
+    <div class="invalid-feedback">
+        @ViewBag.ChooseDateTime
+    </div>
+</div>
 
-    <div class="form-group" style="margin-bottom: 50px;">
-        <label for="photo" class="font-color" style="margin-bottom: 30px;">Документ подтверждающий факт рождения
-            ребёнка</label>
-        <div class="wrapper">
-            <div class="form-input">
-                <button class="delete">
-                    <img class="delete-icon" src="~/images/close.png" alt="x">
-                </button>
-                <div class="preview">
-                    <img class="file-ip-preview">
+<div class="form-group">
+    <label asp-for="Birthplace" class="font-color">@ViewBag.BirthPlace</label>
+    <input id="birthplace" asp-for="Birthplace" type="text" class="form-control" required/>
+    <div class="invalid-feedback">
+        @ViewBag.FillField
+    </div>
+</div>
+
+<div class="form-group">
+    <label asp-for="NewbornCount" class="font-color">@ViewBag.NewbornCount</label>
+    <select id="newbornCount" asp-for="NewbornCount" class="form-control form-select" required>
+        <option value="" selected="selected" disabled="disabled">...</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+    </select>
+    <div class="invalid-feedback">
+        @ViewBag.ChooseCount
+    </div>
+</div>
+
+<div class="form-group">
+    <label asp-for="ChildCount" class="font-color">@ViewBag.ChildrenCount</label>
+    <input id="childCount" asp-for="ChildCount" type="number" class="form-control" value="1" step="1" min="1" max="15" required/>
+    <div class="invalid-feedback">
+       @ViewBag.From1To15
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="childrenProperty" class="font-color">@ViewBag.ChildProperty</label>
+    <div class="row">
+        <div class="col">
+            <label asp-for="Weight" style="margin: 0;">@ViewBag.Weight</label>
+            <input id="weight" asp-for="Weight" type="number" min="100" max="9999" step="1" class="form-control" required/>
+            <div class="invalid-feedback">
+                @ViewBag.From100To9999
+            </div>
+        </div>
+        <div class="col">
+            <label asp-for="Height" style="margin: 0;">@ViewBag.Height</label>
+            <input id="height" asp-for="Height" type="number" min="10" max="70" step="0.1" class="form-control" required/>
+            <div class="invalid-feedback">
+                @ViewBag.From10To70
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label asp-for="PregnancyDuration" class="font-color">@ViewBag.PregnancyDuration</label>
+    <input id="pregnancyDuration" asp-for="PregnancyDuration" type="number" step="1" min="20" max="50" class="form-control" required/>
+    <div class="invalid-feedback">
+        @ViewBag.From20To50
+    </div>
+</div>
+
+<div class="form-group" style="margin-bottom: 50px;">
+    <label for="photo" class="font-color" style="margin-bottom: 30px;">
+        @ViewBag.NewbornDocument
+    </label>
+
+        <div class="alert alert-warning alert-dismissible fade hide show d-none" role="alert">
+            <strong>@ViewBag.ImageSize!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    <div class="wrapper">
+        <div class="form-input" id="documentInput1">
+            <button type="button" class="delete">
+                <img onclick="deleteImage(this)" class="delete-icon" src="~/images/close.png" alt="x">
+            </button>
+            <div class="preview">
+                <img class="file-ip-preview">
+            </div>
+            <label asp-for="DocumentPicture1">
+                <div class="inner">
+                    <img class="file-ip-img" src="~/images/camera.png" alt="img">
+                    <p class="file-ip-text">@ViewBag.TakePicture</p>
                 </div>
-                <label asp-for="DocumentPicture_1">
-                    <div class="inner">
-                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
-                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
-                    </div>
-                </label>
-                <input asp-for="DocumentPicture_1" type="file" id="DocumentPicture_1" accept="image/*" data-img-id="1"
-                    onchange="showPreview(event);" required>
-                <div class="invalid-feedback">
-                    Пожалуйста выберите документ.
-                </div>
-            </div>
-            <div class="form-input">
-                <button class="delete">
-                    <img class="delete-icon" src="~/images/close.png" alt="x">
-                </button>
-                <div class="preview">
-                    <img class="file-ip-preview">
-                </div>
-                <label asp-for="DocumentPicture_2">
-                    <div class="inner">
-                        <img class="file-ip-img" src="~/images/camera.png" alt="img">
-                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
-                    </div>
-                </label>
-                <input asp-for="DocumentPicture_2" type="file" id="DocumentPicture_2" accept="image/*" data-img-id="2"
-                    onchange="showPreview(event);" required>
-                <div class="invalid-feedback">
-                    Пожалуйста выберите документ.
-                </div>
+            </label>
+            <input asp-for="DocumentPicture1" type="file" class="file-input" id="DocumentPicture1" accept="image/*" data-img-id="1"
+                   onchange="showPreview(event)" required/>
+            <div class="invalid-feedback">
+                @ViewBag.ChooseDocument
             </div>
         </div>
-    </div>
+        <div class="form-input">
 
-    <div class="min-height">
-        <input type="submit" value="Далее" class="btn btn-success form-control">
+        </div>
     </div>
+</div>
+
+<div class="min-height">
+            <input id="buttonInput" type="submit" value="@ViewBag.Next" class="btn btn-success form-control">
+</div>
 
 </form>
 
 @section Scripts{
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/dates.js"></script>
+    <script src="~/js/filters.js"></script>
     <script src="~/js/image.block.js"></script>
     <script src="~/js/validation.js"></script>
+    <script src="~/js/childFields.js"></script>
+    <script src="~/js/names.js"></script>
+    <script src="~/js/reasonWindow.js"></script>
 }

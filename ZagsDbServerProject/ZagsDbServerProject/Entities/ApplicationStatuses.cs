@@ -18,7 +18,9 @@ namespace ZagsDbServerProject.Entities
 
         [Required, ForeignKey("StatusID")]
         public int StatusID { get; set; }
-        [Required, ForeignKey("LabelID")]
-        public int LabelID { get; set; }
+        [Required, ForeignKey("WebLabelID")]
+        public int WebLabelID { get; set; }
+        [Required, ForeignKey("MobileLabelID")]
+        public int MobileLabelID { get; set; }
     }
 }

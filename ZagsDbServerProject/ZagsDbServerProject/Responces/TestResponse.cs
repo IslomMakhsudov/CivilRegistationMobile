@@ -12,14 +12,12 @@ namespace ZagsDbServerProject.Responces
         public bool ChildsSex { get; set; }
         public DateTime ChildsBirthday { get; set; }
         public int ChildsCountryID { get; set; }
-        public string ChildsCountry { get; set; }
         public int ChildsRegionID { get; set; }
-        public string ChildsRegion { get; set; }
         public int ChildsCityDistrictID { get; set; }
-        public string ChildsCityDistrict { get; set; }
         public int? ChildsVillageID { get; set; }
-        public string ChildsVillage { get; set; }
         public int ChildsAddressID { get; set; }
         public string ChildsAddress { get; set; }
+        public int ChildsDocumentID1 { get; set; } = 0;
+        public string ChildsDocumentsAddressLink1 { get; set; } = "";
     }
 }

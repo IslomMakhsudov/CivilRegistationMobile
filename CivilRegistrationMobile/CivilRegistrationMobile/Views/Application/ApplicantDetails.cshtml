@@ -1,7 +1,34 @@
 ﻿@model CivilRegistrationMobile.Models.Applicant
 
 @{
-	ViewData["Title"] = "Данные о заявителе";
+    ViewData["Title"] = "Данные о заявителе";
+
+    int type = Model.ApplicationType;
+
+    int firstVal = 0;
+    int secondVal = 0;
+    string firstText = "";
+    string secondText = "";
+    string labelText = "";
+
+
+    if(type != 0){
+        if(type == 1){
+            labelText = @ViewBag.Whom;
+            firstVal = 3;
+            secondVal = 4;
+            firstText = @ViewBag.ToFather;
+            secondText = @ViewBag.ToMother;
+        }
+        else
+        {
+            labelText = @ViewBag.Which;
+            firstVal = 2;
+            secondVal = 1;
+            firstText = @ViewBag.DeathPlace;
+            secondText = @ViewBag.LastLivePlace;
+        }
+    }
 }
 @section Styles{
 	<link rel="stylesheet" href="/css/navigation-styles.css">
@@ -10,165 +37,181 @@
     <link rel="stylesheet" href="/css/image-block.css">
     <link rel="stylesheet" href="/css/optimization.css">
 }
-
-<div class="title">
-    <p>Заполните данные о заявителе</p>
-</div>
 <form method="post" enctype="multipart/form-data" asp-action="ApplicantCreate" class="needs-validation" novalidate>
 
-    <div class="form-group">
-        <label asp-for="CurrentCountry" class="font-color">Выберите страну проживания</label>
-        <select id="countries" onchange="countryChange(this)" class="form-control"  asp-for="CurrentCountry" asp-items="ViewBag.CountryNames" required>
-           
-        </select>
-    </div>
+    <div class="accordion-body">
+        <div class="form-group">
+            <label asp-for="CurrentCountry" class="font-color">@ViewBag.Country</label>
+            <selectOne id="countries" onchange="countryChange(this)" class="form-control"  asp-for="CurrentCountry" asp-items="Model.CountryList" multiple="multiple" required>
 
-    <div class="form-group">
-        <label asp-for="CurrentRegion" class="font-color">Выберите регион проживания</label>
-        <select id="regions" onchange="regionChange(this)" class="form-control" asp-for="CurrentRegion" required>
-            <option selected="selected" disabled="disabled" value="">Выберите регион</option>
-        </select>
-    </div>
+            </selectOne>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="CurrentCity" class="font-color">Выберите город проживания</label>
-        <select id="cities" onchange="cityChange(this)" class="form-control selectpicker"  asp-for="CurrentCity" data-live-search="true" required>
-            <option selected="selected" disabled="disabled" value="">Выберите город</option>
-        </select>
-    </div>
+        <div class="form-group">
+            <label asp-for="CurrentRegion" class="font-color">@ViewBag.Region</label>
+            <selectOne id="regions" onchange="regionChange(this)" class="form-control" asp-for="CurrentRegion" asp-items="Model.RegionList" multiple="multiple" required>
+                <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseRegion</option>
+            </selectOne>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="CurrentVillage" class="font-color">Выберите посёлок в котором проживаете(необязательно)</label>
-        <select id="villages" class="form-control" asp-for="CurrentVillage">
-            <option selected="selected" disabled="disabled" value="">Выберите посёлок</option>
-        </select>
-    </div>
+        <div class="form-group">
+            <label asp-for="CurrentCity" class="font-color">@ViewBag.City</label>
+            <selectOne id="cities" onchange="cityChange(this)" class="form-control selectpicker" asp-for="CurrentCity" asp-items="Model.CityList" multiple="multiple" required>
+                <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseCity</option>
+            </selectOne>
+        </div>
 
-
-
-    <div class="form-group">
-        <label asp-for="LastName" class="font-color">Фамилия(заявителя)</label>
-        <input type="text" class="form-control" asp-for="LastName" required>
-        <div class="invalid-feedback">
-            Пожалуйста заполните поле.
+        <div class="form-group">
+            <label asp-for="CurrentVillage" class="font-color">@ViewBag.Village</label>
+            <selectOne id="villages" class="form-control" asp-for="CurrentVillage" asp-items="Model.VillageList" multiple="multiple" >
+                <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseVillage</option>
+            </selectOne>
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="Name" class="font-color">Имя(заявителя)</label>
-        <input type="text" class="form-control" asp-for="Name" required>
+        <label asp-for="LastName" class="font-color">@ViewBag.LastName</label>
+        <input id="lastName" type="text" class="form-control" asp-for="LastName" required>
         <div class="invalid-feedback">
-            Пожалуйста заполните поле.
+            @ViewBag.FillField
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="Patronymic" class="font-color">Отчество(заявителя, необязательно)</label>
-        <input type="text" class="form-control" asp-for="Patronymic" required>
+        <label asp-for="Name" class="font-color">@ViewBag.Name</label>
+        <input id="name" type="text" class="form-control" asp-for="Name" required>
         <div class="invalid-feedback">
-            Пожалуйста заполните поле.
+            @ViewBag.FillField
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="CurrentAddress" class="font-color">Адрес проживания</label>
-        <input type="text" class="form-control" asp-for="CurrentAddress" required>
+        <label asp-for="Patronymic" class="font-color">@ViewBag.Patronymic</label>
+        <input id="patronymic" type="text" class="form-control" asp-for="Patronymic">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CurrentAddress" class="font-color">@ViewBag.CurrentAddress</label>
+        <input id="currentAddress" type="text" class="form-control" asp-for="CurrentAddress" required>
         <div class="invalid-feedback">
-            Пожалуйста заполните поле.
+            @ViewBag.FillField
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="TIN" class="font-color">ИНН</label>
-        <input type="number" minlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="form-control" asp-for="TIN" required>
+        <label asp-for="TIN" class="font-color">@ViewBag.TIN</label>
+        <input id="tin" type="number" minlength="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="form-control" asp-for="TIN" required>
         <div class="invalid-feedback">
-            Пожалуйста заполните поле.
+            @ViewBag.FillField
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="PassportNumber" class="font-color">Серия паспорта</label>
-        <input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="form-control" asp-for="PassportNumber" required>
+        <label asp-for="PassportNumber" class="font-color">@ViewBag.PassportNumber</label>
+        <input id="passportNumber" type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" class="form-control" asp-for="PassportNumber" required>
         <div class="invalid-feedback">
-            Пожалуйста заполните поле.
+            @ViewBag.FillField
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="IssuingAuth" class="font-color">Орган выдачи</label>
-        <input type="text" class="form-control" asp-for="IssuingAuth" required>
+        <label asp-for="IssuingAuth" class="font-color">@ViewBag.IssuingAuth</label>
+        <input id="issuingAuth" type="text" class="form-control" asp-for="IssuingAuth" required>
         <div class="invalid-feedback">
-            Пожалуйста заполните поле.
+            @ViewBag.FillField
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="PhoneNumber" class="font-color">Номер телефона</label>
-        <input type="tel" maxlength="15" class="form-control" asp-for="PhoneNumber" required>
+        <label asp-for="PhoneNumber" class="font-color">@ViewBag.PhoneNumber</label>
+        <input id="phoneNumber" type="tel" maxlength="15" class="form-control" asp-for="PhoneNumber" required>
         <div class="invalid-feedback">
-            Пожалуйста заполните поле.
+            @ViewBag.FillField
         </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegisterTo" class="font-color">@labelText</label>
+        <selectOne id="registerTo" class="form-control" asp-for="RegisterTo"  multiple="multiple" required>
+            <option selected="selected" disabled="disabled" value="">@ViewBag.ChooseAddress</option>
+                <option value="@firstVal">@firstText</option>
+            <option value="@secondVal">@secondText</option>
+        </selectOne>
+            <div class="invalid-feedback">
+                @ViewBag.ChooseAddress
+            </div>
     </div>
 
     <div class="form-group" style="margin-bottom: 50px;">
-        <label for="photo" class="font-color" style="margin-bottom: 30px;">Выберите документ, подтверждающий
-            вашу
-            личность</label>
+        <label class="font-color" style="margin-bottom: 30px;">@ViewBag.Document</label>
 
+        <div class="alert alert-warning alert-dismissible fade show d-none" role="alert">
+            <strong>@ViewBag.ImageSize!</strong>
+            <button onclick="closeAlert()" type="button" class="btn-close"></button>
+        </div>
 
         <div class="wrapper">
-            <div class="form-input">
-                <button class="delete">
-                    <img class="delete-icon" src="~/images/close.png" alt="x">
+
+            <div class="form-input" id="documentInput1">
+                <button type="button" class="delete">
+                    <img onclick="deleteImage(this)" class="delete-icon" src="~/images/close.png" alt="x">
                 </button>
+
                 <div class="preview">
                     <img class="file-ip-preview">
                 </div>
-                <label asp-for="DocumentPicture_1">
+
+                <label asp-for="DocumentPicture1">
                     <div class="inner">
                         <img class="file-ip-img" src="~/images/camera.png" alt="img">
-                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                        <p class="file-ip-text">@ViewBag.TakePicture</p>
                     </div>
                 </label>
-                <input asp-for="DocumentPicture_1" type="file" class="file-input" id="DocumentPicture_1" accept="image/*" data-img-id="1"
-                    onchange="showPreview(event);" required>
+
+                <input asp-for="DocumentPicture1" type="file" class="file-input" id="DocumentPicture1" accept="image/*" data-img-id="1"
+                       onchange="showPreview(event);" required/>
+
                 <div class="invalid-feedback">
-                    Пожалуйста выберите документ.
+                    @ViewBag.ChooseDocument
                 </div>
             </div>
-            <div class="form-input">
-                <button class="delete">
-                    <img class="delete-icon" src="~/images/close.png" alt="x">
+
+            <div class="form-input" id="documentInput2">
+                <button type="button" class="delete">
+                    <img onclick="deleteImage(this)" class="delete-icon" src="~/images/close.png" alt="x">
                 </button>
+
                 <div class="preview">
                     <img class="file-ip-preview">
                 </div>
-                <label asp-for="DocumentPicture_2">
+
+                <label asp-for="DocumentPicture2">
                     <div class="inner">
                         <img class="file-ip-img" src="~/images/camera.png" alt="img">
-                        <p class="file-ip-text">Сфотографируйте или выберите из галереи</p>
+                        <p class="file-ip-text">@ViewBag.TakePicture</p>
                     </div>
                 </label>
-                <input asp-for="DocumentPicture_2" type="file" class="file-input" id="DocumentPicture_2" accept="image/*" data-img-id="2"
-                    onchange="showPreview(event);" required>
+
+                <input asp-for="DocumentPicture2" type="file" class="file-input" id="DocumentPicture2" accept="image/*" data-img-id="2"
+                       onchange="showPreview(event)" required/>
+
                 <div class="invalid-feedback">
-                    Пожалуйста выберите документ.
+                    @ViewBag.ChooseDocument
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="min-height">
-        
-            <input type="submit"  value="Далее" class="btn btn-success form-control ">
-        
+        <input id="buttonInput" type="submit" value="@ViewBag.Next" class="btn btn-success form-control ">
     </div>
     
 </form>
 
 @section Scripts{
+    <script src="~/lib/jquery/jquery-3.6.1.min.js"></script>
     <script charset="utf-8" type="text/javascript" src="~/js/filters.js"></script>
-    <script src="~/js/image.block.js"></script> 
+    <script charset="utf-8" type="text/javascript" src="~/js/image.block.js"></script>
     <script src="~/js/validation.js"></script>
+    <script src="~/js/applicantFields.js"></script>
 }

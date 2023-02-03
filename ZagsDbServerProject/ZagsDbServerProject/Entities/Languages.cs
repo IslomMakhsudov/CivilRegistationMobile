@@ -18,5 +18,9 @@ namespace ZagsDbServerProject.Entities
         [Required, MaxLength(50)]
         public string Name { get; set; }
 
+
+        [Required, ForeignKey("StatusID")]
+        public int StatusID { get; set; }
+
     }
 }

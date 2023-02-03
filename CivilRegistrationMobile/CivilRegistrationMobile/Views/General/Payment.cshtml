@@ -4,15 +4,22 @@
     <link rel="stylesheet" href="~/css/navigation-styles.css">
     <link rel="stylesheet" href="~/css/child-registration-content.css">
     <link rel="stylesheet" href="~/css/applicant.css">
+    <style>
+        .flex-btn{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 }
 
-<form method="post" asp-action="DeeplinkToAmonat" class="p-flex">
+<div class="p-flex">
     <div class="payment-title">
-        <p>Для получения ответа заявления оплатите следующие платежи</p>
+        <p>@ViewBag.PaymentTitle</p>
     </div>
     <div class="p-box">
         <div class="top">
-            <p>Сумма платежа</p>
+            <p>@ViewBag.Sum</p>
         </div>
         <div class="center">
             <p>
@@ -20,7 +27,7 @@
                     @ViewBag.TotalPrice
                 </span>
                 <span id="currency">
-                    СОМОНИ
+                    TJS
                 </span>
             </p>
         </div>
@@ -36,7 +43,7 @@
         </div>
     </div>
     <div class="box-2">
-        <input class="btn flex-btn w-100" type="button" value="Продолжить">
+        <a  asp-action="DeeplinkToAmonat" class="btn flex-btn w-100">@ViewBag.Continue</a>
     </div>
     
-</form>
+</div>

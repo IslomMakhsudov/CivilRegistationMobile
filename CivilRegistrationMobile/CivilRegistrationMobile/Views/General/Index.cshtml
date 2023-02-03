@@ -10,14 +10,14 @@
 }
   
   <div class="content-row text-none">
-      <a asp-action="NewbornRegistration" asp-route-code="0" class="rows text-none">
+      <a asp-action="NewbornRegistration" asp-route-code="1" class="rows text-none">
           <div class="btn row-button text-none">
               <div class="content-icon">
-                  <img src="images/person.png">
+                  <img src="/images/person.png">
               </div>
               <div class="content-text-main text-none">
                   <p>
-                      Заявление о государственной регистрации рождения ребёнка
+                      @ViewBag.NewbornRegistration
                   </p>
               </div>
           </div>
@@ -25,14 +25,14 @@
   </div>
   
   <div class="content-row">
-      <a asp-action="DeathRegistration" class="rows">
+      <a asp-action="DeathRegistration" asp-route-code="1" class="rows">
           <div class="btn row-button">
               <div class="content-icon">
-                  <img src="images/book.png">
+                  <img src="/images/book.png">
               </div>
               <div class="content-text-main">
                   <p>
-                      Заявление о государственной регистрации смерти
+                      @ViewBag.DeathRegistration
                   </p>
               </div>
           </div>

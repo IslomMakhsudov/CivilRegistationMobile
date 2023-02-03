@@ -18,5 +18,11 @@ namespace ZagsDbServerProject.Entities
         public string TableName { get; set; }
         [Required, MaxLength(200)]
         public string Description { get; set; }
+        [Required]
+        public bool IsRepresentedInWeb { get; set; }
+
+
+        [Required, ForeignKey("LabelID")]
+        public int LabelID { get; set; }
     }
 }

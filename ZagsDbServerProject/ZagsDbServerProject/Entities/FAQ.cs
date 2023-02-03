@@ -12,10 +12,11 @@ namespace ZagsDbServerProject.Entities
     {
         [Key]
         public int FaqID { get; set; }
-        [Required, MaxLength(100)]
+        [Required, MaxLength(500)]
         public string FaqQuestion { get; set; }
-        [Required, MaxLength(200)]
+        [Required, MaxLength(2000)]
         public string FaqAnswer { get; set; }
+        
 
 
         [Required, ForeignKey("StatusID")]

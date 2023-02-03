@@ -14,11 +14,11 @@
                     event.stopPropagation()
                 }
 
+                if (form.checkValidity()) {
+                    let loader = document.querySelector("#loader");
+                    loader.className = "loader";
+                }
                 form.classList.add('was-validated')
             }, false)
         })
-})();
-
-$(document).ready(function () {
-    $('.mdb-select').materialSelect();
-});
+})()

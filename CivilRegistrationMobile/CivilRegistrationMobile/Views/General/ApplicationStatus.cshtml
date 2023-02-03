@@ -1,5 +1,218 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ApplicationStatus
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/navigation-styles.css">
+    <link rel="stylesheet" href="~/css/applicant.css">
+    <link rel="stylesheet" href="~/css/myApplicationsExtendedVersion.css">
+    <link rel="stylesheet" href="~/css/myApplications-style.css">
+}
 @{
+
+    string classApproved = "Service_approved";
+    string svgApproved = "#00b06c";
+    string pathApproved = "M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z";
+    string colorApproved = "color-success";
+    
+    string classWaiting = "waiting";
+    string svgWaiting = "#f39c12";
+    string pathWaiting = "M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z";
+    string colorWaiting = "color-waiting";
+    
+    string classDeclined = "dissmiss";
+    string svgDeclined = "#e74c3c";
+    string pathDeclined = "M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z";
+    string colorDeclined = "color-dissmiss";
+    
+    string classCorrection = "Service_correction parent";
+    string colorCorrection = "color-correction";
+    
+    string upClass = "";
+    string upSvg = "";
+    string upPath = "";
+    string upColor = "";
+    
+    string midClass = "";
+    string midSvg = "";
+    string midPath = "";
+    string midColor = "";
+    
+    string botClass = "";
+    string botSvg = "";
+    string botPath = "";
+    string botColor = "";
+
+    string actionName = Model.TypeID == 1 ? "NewbornRegistration" : "DeathRegistration";
+
+
+}
+
+@switch(Model.StatusID){
+    case 1:
+        upClass = classApproved;
+        upSvg = svgApproved;
+        upPath = pathApproved;
+        upColor = colorApproved;
+
+        midClass = classWaiting;
+        midSvg = svgWaiting;
+        midPath = pathWaiting;
+        midColor = colorWaiting;
+        break;
+    case 2:
+        upClass = classApproved;
+        upSvg = svgApproved;
+        upPath = pathApproved;
+        upColor = colorApproved;
+
+        midClass = classWaiting;
+        midSvg = svgWaiting;
+        midPath = pathWaiting;
+        midColor = colorWaiting;
+        break;
+    case 3:
+        upClass = classApproved;
+        upSvg = svgApproved;
+        upPath = pathApproved;
+        upColor = colorApproved;
+
+        midClass = classApproved;
+        midSvg = svgApproved;
+        midPath = pathApproved;
+        midColor = colorApproved;
+
+        botClass = classWaiting;
+        botSvg = svgWaiting;
+        botPath = pathWaiting;
+        botColor = colorWaiting;
+        break;
+    case 4:
+        upClass = classApproved;
+        upSvg = svgApproved;
+        upPath = pathApproved;
+        upColor = colorApproved;
+
+        midClass = classApproved;
+        midSvg = svgApproved;
+        midPath = pathApproved;
+        midColor = colorApproved;
+
+        botClass = classApproved;
+        botSvg = svgApproved;
+        botPath = pathApproved;
+        botColor = colorApproved;
+        break;
+    case 5:
+        upClass = classApproved;
+        upSvg = svgApproved;
+        upPath = pathApproved;
+        upColor = colorApproved;
+
+        midClass = classDeclined;
+        midSvg = svgDeclined;
+        midPath = pathDeclined;
+        midColor = colorDeclined;
+        break;
+    case 6:
+        upClass = classApproved;
+        upSvg = svgApproved;
+        upPath = pathApproved;
+        upColor = colorApproved;
+
+        midClass = classCorrection;
+        midColor = colorCorrection;
+        break;
+}
+
+<div class="vers-head title-font">
+    <p>@Model.Title</p>
+    @if(Model.StatusID != 6){
+        <a asp-action="@actionName" asp-route-code="2" asp-route-applicationId="@Model.ApplicationID">
+            <span>@Model.LinkText</span>
+        </a>
+    }
+</div>
+
+<div class="box-1">
+    <div id="upStatus" class="row block-1">
+        <div class="col-1 icon-w">
+            <div class="blob @upClass">
+                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="@upSvg" class="bi bi-exclamation-circle"
+                     viewBox="0 0 16 16">
+                    <path d="@upPath" />
+                </svg>
+            </div>
+        </div>
+        <div class="col-10">
+                <div class="btn applications text-none">
+                    <div class="row row-cols-2">
+                        <div class="col-12 text-l  top-text">
+                            @Model.UpTitle
+                        </div>
+                        <div class="col-6 text-l bot-text">@Model.UpDate @Model.UpTime</div>
+                        <div class="col-6 text-r @upColor bot-text">@Model.UpStatusText</div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="midStatus" class="row block-1">
+        <div class="col-1 icon-w">
+            <div class="blob @midClass">
+                @if (Model.StatusID == 6)
+                {
+                    <div class="icon-loader"></div>
+                    <div class="icon-loader2"></div>
+                }
+                else
+                {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="@midSvg" class="bi bi-exclamation-circle"
+                         viewBox="0 0 16 16">
+                        <path d="@midPath" />
+                    </svg>
+                }
+
+            </div>
+        </div>
+        <div class="col-10">
+                <div class="btn applications">
+                    <div class="row row-cols-2">
+                        <div class="col-12 text-l  top-text">
+                            @Model.MidTitle
+                        </div>
+                        <div class="col-6 text-l bot-text">@Model.MidDate @Model.MidTime</div>
+                        <div class="col-6 text-r @midColor bot-text">@Model.MidStatusText</div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="botStatus" class="row block-1" style="display:none;">
+        <div class="col-1 icon-w">
+            <div class="blob @botClass">
+                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="@botSvg" class="bi bi-exclamation-circle"
+                     viewBox="0 0 16 16">
+                    <path d="@botPath" />
+                </svg>
+            </div>
+        </div>
+        <div class="col-10">
+                <div class="btn applications">
+                    <div class="row row-cols-2">
+                        <div class="col-12 text-l  top-text">
+                            @Model.BotTitle
+                        </div>
+                        <div class="col-6 text-l bot-text">@Model.BotDate @Model.BotTime</div>
+                        <div class="col-6 text-r @botColor bot-text">@Model.BotStatusText</div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="box-2">
+    <a id="correctButton" asp-action="CorrectApplication" asp-route-applicationID="@Model.ApplicationID" class="btn  flex-btn btn-success" style="display:none">@Model.CorrectBtnText</a>
+    <a id="mainButton" asp-action="MyApplications" class="btn  flex-btn btn-success">@Model.MainBtnText</a>
+</div>
+
+@section Scripts{
+    <script src="~/js/applicationStatus.js"></script>
 }

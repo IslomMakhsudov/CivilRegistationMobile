@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model Filter
+
+@section Styles{
+  <link rel="stylesheet" href="~/css/myApplications-style.css">
+  <link rel="stylesheet" href="~/css/myApplicationsFilter.css">
 }
+
+<form asp-action="FilterSubmit" class="h-90">
+  <div class="flex">
+    <div class="box-1">
+      <div class="form-group">
+        <label asp-for="ApplicationType" class="font-color">@ViewBag.ServiceType</label>
+        <select asp-for="ApplicationType" class="form-control" id="babyCount">
+          <option value="1">@ViewBag.Newborn</option>
+          <option value="2">@ViewBag.Deceased</option>
+        </select>
+      </div>
+     <div class="form-group">
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="From"  class="font-color w-100">@ViewBag.From</label>
+                <img class="date-icon" src="/images/calendar_icon.png"/>
+                <input asp-for="From"  class="datetime" type="date" required/>
+            </div>
+            <div class="col">
+                <label asp-for="To"  class="font-color w-100">@ViewBag.To</label>
+                <img class="date-icon" src="/images/calendar_icon.png" />
+                <input asp-for="To" class="datetime" type="date" required value="00:00:00"/>
+            </div>
+        </div>
+        <div class="invalid-feedback">
+            @ViewBag.ChooseDateTime
+        </div>
+    </div>
+    </div>
+    <div class="box-2 form-group">
+      <input class="btn flex-btn" type="submit" value="@ViewBag.Find">
+    </div>
+  </div>
+
+</form>

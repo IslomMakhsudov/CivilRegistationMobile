@@ -49,18 +49,6 @@ namespace ZagsDbServerProject.Entities.EntityMapper
                     ApplicationTypeMemberID = 6,
                     ApplicationTypeID = 2,
                     ApplicationMemberTypeID = 5
-                },
-                new ApplicationTypeMembers()
-                {
-                    ApplicationTypeMemberID = 7,
-                    ApplicationTypeID = 2,
-                    ApplicationMemberTypeID = 6
-                },
-                new ApplicationTypeMembers()
-                {
-                    ApplicationTypeMemberID = 8,
-                    ApplicationTypeID = 2,
-                    ApplicationMemberTypeID = 7
                 }
 
             );

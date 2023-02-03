@@ -6,7 +6,7 @@ body {
 }
 
 .content-row {
-  margin-top: 1.5vh;
+  margin-top: 1rem !important;
 }
 
 .dropdown-menu.show {
@@ -26,7 +26,7 @@ a{
   height: 100%;
   width: 100%;
   margin: 0  0 10px;
-  border-radius: 0.5rem;
+  border-radius: 12px;
   display: flex;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25);
   padding: 0;
@@ -40,6 +40,7 @@ a{
   height: 8%;
   min-height: 40px;
   font-size: calc(9px + 10 * (100vw / 1140));
+  margin-bottom: 30px;
 }
 
 .title-cbr {
@@ -221,13 +222,12 @@ p{
 }
 
 .flex-btn {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background-color: rgb(9, 146, 39);
-  color: white;
-  text-align: center;
-
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #00B06C;
+    color: white;
+    text-align: center;
 }
 
 .round {
@@ -282,4 +282,61 @@ p{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position:relative;
+}
+
+.blob.dissmiss {
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+    background: #faa995;
+}
+
+.none{
+    display: none;
+}
+
+.accordion-body{
+    padding: 0;
+}
+
+.list-group {
+    max-width: 300px;
+    width: 85%;
+    position: absolute;
+}
+
+/* Rectangle 591 */
+.correcting-box {
+    position: fixed;
+    display: none;
+    align-items: center;
+    width: 100px;
+    height: 54px;
+    top: 50px;
+    right: 0;
+    background: rgba(41, 128, 185, 0.2);
+    border-radius: 10px 0px 0px 10px;
+    padding: 1px 6px;
+}
+
+/* Посмотреть корриктировки */
+.corr-text {
+    width: 68px;
+    left: 294px;
+    font-family: 'PT Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 113.5%;
+    /* or 11px */
+    color: #2980B9;
+}
+
+.offcanvas-end {
+    width: 250px;
+}
+
+.correcting-box svg {
+    margin-right: 10px;
 }

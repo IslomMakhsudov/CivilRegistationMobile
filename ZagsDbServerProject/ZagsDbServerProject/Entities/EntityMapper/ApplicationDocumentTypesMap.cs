@@ -34,15 +34,28 @@ namespace ZagsDbServerProject.Entities.EntityMapper
                 new ApplicationDocumentTypes
                 {
                     ApplicationDocumentTypeID = 4,
-                    Name = "Шаҳодатнома (намуд аз пеш)",
+                    Name = "Шиноснома (намуд аз пеш)",
                     StatusID = 1
                 },
                 new ApplicationDocumentTypes
                 {
                     ApplicationDocumentTypeID = 5,
-                    Name = "Шаҳодатнома (намуд аз қафо)",
+                    Name = "Шиноснома (намуд аз қафо)",
+                    StatusID = 1
+                },
+                new ApplicationDocumentTypes
+                {
+                    ApplicationDocumentTypeID = 6,
+                    Name = "Маълумотнома аз таваллудхона",
+                    StatusID = 1
+                },
+                new ApplicationDocumentTypes
+                {
+                    ApplicationDocumentTypeID = 7,
+                    Name = "Ҳуҷҷати тасдиқкунандаи фавт",
                     StatusID = 1
                 }
+
             );
         }
     }

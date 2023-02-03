@@ -3,6 +3,7 @@
 
     className = ViewBag.PageName == "Payment" ? "payment h-100" : "";
     className = ViewBag.PageName == "ApplicationFilter" ? "h-100" : "";
+    className = ViewBag.PageName == "RegistryOffices" ? "content" : "";
 }
 
 <!DOCTYPE html>
@@ -13,10 +14,36 @@
     <title>@ViewData["Title"] - CivilRegistrationMobile</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/loading.css" />
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
+
+<div id="loader" class="loader hide">
+    <div class="load-animation"></div>
+    <p2>Пожалуйста подождите...</p2>
+</div>
+
     <div class="container @className">
+
+        <button id="canvasBtn" type="button" class="btn correcting-box" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="display:none;">
+            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.75007 10.62L1.94674 6.81667C1.49757 6.3675 1.49757 5.6325 1.94674 5.18334L5.75007 1.38" stroke="#2980B9" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="corr-text">@ViewBag.CommentBtn</p>
+        </button>
+
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasRightLabel">@ViewBag.CommentTitle</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                @ViewBag.CommentBody
+            </div>
+        </div>
+
         <div class="header">
             <div class="navigation-header">
                 <div class="image">
@@ -27,14 +54,21 @@
 
                 @if(ViewBag.PageName == "Support")
                 {
-                    <p>Тех поддержка</p>
+                    <p>@ViewBag.SupportTitle</p>
                     <div class="image_2-div">
 
                     </div>
                 }
                 @if (ViewBag.PageName == "ApplicationFilter")
                 {
-                    <p>Фильтр заявок</p>
+                    <p>@ViewBag.Filter</p>
+                    <div class="image_2-div">
+
+                    </div>
+                }
+                @if(ViewBag.PageName == "RegistryOffices")
+                {
+                    <p>@ViewBag.RegistryOffice</p>
                     <div class="image_2-div">
 
                     </div>

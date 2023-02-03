@@ -18,11 +18,19 @@ namespace ZagsDbServerProject.Entities
         [Required]
         public DateTime PaymentTime { get; set; }
         [Required]
-        [Column(TypeName = "VARCHAR"), MaxLength(50)]
+        [Column(TypeName = "VARCHAR"), MaxLength(36)]
         public string PaymentCode { get; set; }
 
 
+        [Required, ForeignKey("ApplicationID")]
+        public int ApplicationID { get; set; }
         [Required, ForeignKey("PaymentSystemID")]
         public int PaymentSystemID { get; set; }
+        [Required, ForeignKey("PaymentDebitAccount")]
+        [Column(TypeName = "VARCHAR"), MaxLength(50)]
+        public string PaymentDebitAccount { get; set; }
+        [Required, ForeignKey("PaymentCreditAccount")]
+        [Column(TypeName = "VARCHAR"), MaxLength(50)]
+        public string PaymentCreditAccount { get; set; }
     }
 }

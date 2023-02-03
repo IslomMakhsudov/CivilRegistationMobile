@@ -44,15 +44,30 @@ html, body{
     margin-bottom: 50px;
 }
 
+.m-top{
+    margin-top: 20px;
+}
+
 .time-w{
     width: 90px;
 }
 
-.date-icon{
-    margin-bottom: 7px;
+.date-icon {
+    margin-bottom: 5px;
+    max-height: 28px;
+    max-width: 28px;
+    width: 16%;
 }
 
 .file-ip-preview{
     max-height: 105px;
     max-width: 70px;
+}
+
+.border-red{
+    border: solid 2px #E74C3C !important; 
+}
+
+.p-relative {
+    position: relative;
 }

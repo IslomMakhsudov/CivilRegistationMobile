@@ -13,7 +13,9 @@ namespace ZagsDbServerProject.Entities
         [Key]
         public int ApplicationDetailID { get; set; }
         [Required, MaxLength(50)]
-        public string Detail { get; set; }
+        public string Detail { get; set; } = "";
+
+
         [Required, ForeignKey("MistakeStatus")] 
         public int MistakeStatus { get; set; }
         [Required, ForeignKey("ApplicationID")]

@@ -14,6 +14,16 @@ namespace ZagsDbServerProject.Entities
         public int DepartmentID { get; set; }
         [Required, MaxLength(255)]
         public string DepartmentName { get; set; }
+        [MaxLength(100)]
+        public string LocationLink { get; set; }
+        [MaxLength(50)]
+        public string Latitude { get; set; }
+        [MaxLength(50)]
+        public string Longitude { get; set; }
+        [Required]
+        public int WorkScheduleLabelID { get; set; } // Example: пн - сб, пн - пт
+        [MaxLength(50)]
+        public string WorkTime { get; set; }     // Example: 09:00 - 18:00 
 
 
         [Required, ForeignKey("AddressID")]

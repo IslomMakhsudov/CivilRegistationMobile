@@ -18,7 +18,7 @@ namespace ZagsDbServerProject.Repositories
             return await Task.FromResult(
                 context.Customers
                 .Where(a => a.ExternalID == externalID)
-                .SingleOrDefault()
+                .FirstOrDefault()
             );
         }
     }

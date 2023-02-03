@@ -2,15 +2,17 @@ body,
 head {
     width: 100vw;
     height: 100vh;
-    font-family:  'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
-a{
+
+a {
     text-decoration: none;
-  }
+}
+
 .container {
     max-width: 500px;
     height: 100vh;
-   background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .rating-top {
@@ -18,14 +20,11 @@ a{
     font-size: 24px;
     padding-top: 8px;
     width: 100%;
-    /* height: 40vh; */
     height: 42%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* padding-top: 20%; */
     align-items: center;
-    /* border: 4mm ridge rgba(211, 220, 50, .6); */
 }
 
 .gradeText {
@@ -44,7 +43,6 @@ a{
     width: 94%;
     padding: 2% 14% 0% 14%;
     font-size: 14px;
-    /* height: 10vh; */
     height: 10%;
     border-top: 1px solid #ECEFF1;
     border-bottom: 1px solid #ECEFF1;
@@ -52,26 +50,6 @@ a{
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-/* .rating-medium p {
-    font-size: 14px;
-    margin-top: 3%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-} */
-
-.rating-bottom {
-
-    color: #2C3E50;
-    padding: 10px;
-    width: 100%;
-    /* height: 40vh; */
-    height: 44%;
-    /* border: 4mm ridge rgba(211, 220, 50, .6); */
 }
 
 .flex {
@@ -90,15 +68,17 @@ a{
     justify-content: center;
     align-items: center;
 }
-.box-1 p{
+
+.box-1 p {
     font-size: 14px;
     color: #2C3E50;
 }
+
 .box-2 {
     width: 100%;
-    height: 25%;
+    height: 50px;
     display: flex;
-    flex-direction: column;
+    margin-bottom: 30px;
     justify-content: center;
     align-items: center;
 }
@@ -106,71 +86,19 @@ a{
 .flex-btn {
     font-size: 18px;
     color: white;
-    padding: center;
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    background-color: #00b06c;
-}
-
-/* .rating-area {
-    /* overflow: hidden; */
-    /* width: 100%;
+    background-color: #00B06C;
+    text-align: center;
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center; */
-    
-    /* margin-right: 35%; */
-    /* margin: 0 auto; */
-/* } */
-
-.rating-area:not(:checked)>input {
-    display: none;
-}
-
-.rating-area:not(:checked)>label {
-    float: right;
-    /* margin-right: 15px; */
-    /* width: 50px; */
-    padding: 3px;
-    cursor: pointer;
-    font-size: 38px;
-    line-height: 30px;
-    color: #ffff;
-    text-shadow: 3px 3px 3px black;
-}
-
-.rating-area:not(:checked)>label:before {
-    content: '★';
-} 
-
-.rating-area>input:checked~label {
-    color: gold;
-    text-shadow: 1px 2px rgb(219, 216, 45);
-}
-
-.rating-area:not(:checked)>label:hover,
-.rating-area:not(:checked)>label:hover~label {
-    color: gold;
-}
-
-.rating-area>input:checked+label:hover,
-.rating-area>input:checked+label:hover~label,
-.rating-area>input:checked~label:hover,
-.rating-area>input:checked~label:hover~label,
-.rating-area>label:hover~input:checked~label {
-    color: gold;
-    text-shadow: 1px 1px goldenrod;
-}
-
-.rate-area>label:active {
-    position: relative;
 }
 
 .blob.Service_approved {
     width: 20vw;
     height: 20vw;
-    /* height: 100%; */
     margin: 3px;
     margin-top: 28px;
     height: 106px;
@@ -191,4 +119,16 @@ a{
     75% {
         box-shadow: 0 0 0 16px transparent;
     }
+}
+
+.bot {
+    height: 55%;
+    min-height: 400px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.image{
+    display:none;
 }

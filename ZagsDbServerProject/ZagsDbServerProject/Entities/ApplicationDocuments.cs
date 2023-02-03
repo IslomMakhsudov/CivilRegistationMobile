@@ -24,7 +24,7 @@ namespace ZagsDbServerProject.Entities
         public int ApplicationID { get; set; }
         [Required, ForeignKey("ApplicationTypeID")]
         public int ApplicationTypeID { get; set; }
-        [Required, ForeignKey("ApplicationsParticipantsDataID")]
-        public int ApplicationsParticipantsDataID { get; set; }
+        [Required, ForeignKey("ApplicationParticipantsDataID")]
+        public int ApplicationParticipantsDataID { get; set; }
     }
 }

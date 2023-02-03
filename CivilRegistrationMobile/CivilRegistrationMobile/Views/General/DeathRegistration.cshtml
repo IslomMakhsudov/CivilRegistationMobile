@@ -3,64 +3,104 @@
 	ViewData["Title"] = "Регистрация смерти";
 }
 
+
 @section Styles{
     <link rel="stylesheet" href="~/css/navigation-styles.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/child-registration-content.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/reason-window.css" asp-append-version="true"/>
 }
 
 @section UnderHeader{
 
+    <div id="reasonWindow" class="main-container hide">
+        <div class="reason-window">
+            <div class="app-image">
+                <div class="blob Service_declined">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="#e74c3c"
+                     class="bi bi-exclamation-circle " viewBox="0 0 16 16">
+                        <path d="M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0
+                                    .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                    </svg>
+                </div>
+            </div>
+            <div>
+                <div class="reason-title">
+                    @ViewBag.NotInOneYear
+                </div>
+                <div class="reason-text ">
+                    <p id="reasonText"></p>
+                </div>
+            </div>
+            <button onclick="hideReasonWindow()" id="okBtn" class="btn reason-btn" type="button">OK</button>
+        </div>
+    </div>
+
+
     <div>
         <div class="title-cbr">
             <p>
-                Заявление о государственной регистрации смерти
+                @ViewBag.DeathRegistration
             </p>
         </div>
         <div class="row content-row">
-            <a asp-action="ApplicantDetails" asp-controller="Application" class="rows">
+            <a id="applicantDetails" asp-action="ApplicantDetails" asp-controller="Application" class="rows">
                 <div class="btn row-button">
                     <div class="content-icon">
-                        <img src="~/images/@Model.OneImage">
+                        <img id="applicantImage" src="/images/@Model.OneImage">
+                         <div id="applicantIcon" class="blob dissmiss none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="#e74c3c" class="bi bi-exclamation-circle"
+                                viewBox="0 0 16 16">
+                                <path d="M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="content-text">
-                        <p>Заполните данные заявителя</p>
+                        <p>@ViewBag.ApplicantDetails</p>
                     </div>
                 </div>
             </a>
         </div>
         <div class="row content-row">
-            <a asp-action="DeceasedDetails" asp-controller="Application" class="rows">
+            <a id="childDetails" asp-action="DeceasedDetails" asp-controller="Application" class="rows">
                 <div class="btn row-button">
                     <div class="content-icon">
-                        <img src="~/images/@Model.TwoImage">
+                        <img id="childImage" src="/images/@Model.TwoImage">
+                            <div id="childIcon" class="blob dissmiss none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="#e74c3c" class="bi bi-exclamation-circle"
+                                viewBox="0 0 16 16">
+                                    <path d="M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                </svg>
+                            </div>
                     </div>
                     <div class="content-text">
-                        <p>Заполните данные усопшего</p>
+                        <p>@ViewBag.DeceasedDetails</p>
                     </div>
                 </div>
             </a>
         </div>
         <div class="box-1">
+
             <div style="min-width: 10%; height: 100%; align-items: center; display: flex;">
                 <div class="round">
-                    <input type="checkbox" id="checkbox" />
+                    <input onchange="checkFields()" type="checkbox" id="checkbox" />
                     <label for="checkbox"></label>
                 </div>
             </div>
-            <div style="text-align: left; font-size: 12px; ">
-                Согласно законодательству Республики Таджикистан считаю себя ответственным за дачу заведомо ложных
-                сведений.
+            <div class="apply-text">
+                @ViewBag.Agreement
             </div>
+
         </div>
     </div>
 }
 
 <div class="box-2">
-    <a href="payment.html" class="w-100 h-100">
-        <input class="btn flex-btn" type="button" value="Продолжить">
+    <a id="buttonLink" asp-action="Payment" asp-route-pageName="Death" class="w-100 h-100">
+        <input id="buttonInput" class="btn flex-btn" type="button" value="@ViewBag.Continue">
     </a>
 </div>
 
 @section Scripts{
-    <script src="~/js/changeColor.js"></script>
+    <script src="~/js/reasonWindow.js"></script>
+    <script src="~/js/deceasedStatus.js"></script>
 }

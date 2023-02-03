@@ -10,14 +10,12 @@ a{
   }
 .header {
     height: 35px;
-    margin-top: 10px;
 }
 
 .navigation-bar {
     text-align: center;
     align-items: center;
-    height: 10%;
-    min-height: 65px;
+    min-height: 60px;
     display: flex;
     justify-content: center;
     padding: 0;
@@ -74,5 +72,42 @@ a{
 
 .image_2-div{
     height: 33px;
-    width: 35px;
+    width: 40px;
   }
+
+.bot-navigation {
+    position: absolute;
+    width: 259px;
+    height: 45px;
+    left: 58px;
+    top: 748px;
+}
+
+/* Group 76 */
+.bot-nav-box {
+    width: 100px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/* vuesax/bulk/book-saved */
+.nav-icon {
+    position: absolute;
+    width: 31px;
+    height: 31px;
+    left: 67px;
+    top: 749px;
+}
+
+/* –≈≈—“– »Ã®Õ */
+.bot-nav-text {
+    font-family: 'PT Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 12px;
+    color: #2C3E50;
+}    

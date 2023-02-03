@@ -14,8 +14,8 @@ namespace ZagsDbServerProject.Entities
         public int CityzenshipID { get; set; }
         [Required, MaxLength(50)]
         public string Name { get; set; }
-        [Required]
-        public int ExternalID { get; set; }
+        [Required, MaxLength(100)]
+        public string ExternalName { get; set; }
 
 
         [Required, ForeignKey("StatusID")]
